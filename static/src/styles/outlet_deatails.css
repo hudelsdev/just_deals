@@ -1,0 +1,240 @@
+.deals_body{
+    background-color:#f8f8f8;
+}
+.deal-nav{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    height: 65px;
+}
+.deals_logo{
+  height: 40px;
+  width: 120px;
+  position: relative;
+  left: 25px;
+}
+@media screen and (max-width: 600px) {
+  .deals_logo{
+    display: none;
+  }
+}
+
+
+.search_deals {
+    display: inline-block;
+    position: relative;
+    margin: auto;
+    width: 280px;
+  }
+  
+  .search_deals input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search_deals button[type="submit"] {
+    background-color: #ef534e;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+    transition: .9s ease;
+  }
+  
+  .search_deals button[type="submit"]:hover {
+    transform: scale(1.1);
+    color: rgb(255, 255, 255);
+    background-color: #ef534e;  }
+  
+
+  .deail_deal_div_main{
+    background-color:  #fff;
+    height: 280px;
+    width: 100%px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    
+  }
+  .deail_deal_div{
+    background-color: #fff ;
+    height: 290px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .property_div{
+    width: 60%;
+    height: 250px;
+    background-color:  #fff;
+    position: relative;
+   
+  }
+  .deal_img_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 250px;
+    background-color:  #9f5e5e(162, 116, 59);
+    position: relative;
+    
+  }
+
+  .select_deals_div{
+   height:80px;
+   width: 100%;
+   background-color: #fff ;  
+   display: flex;
+   justify-content:baseline;  
+   align-items: center;
+  }
+  .select_deals_div ul li{
+    list-style: none;
+    display: inline;
+    padding: 20px;
+    font-family: sans-serif;
+    border: 1px solid black;
+  }
+
+  .cards_deals{
+    background-color:  #fff;
+    height: 320px;
+    width: 60%;
+  }
+  .name_deal_div{
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    height: 70px;
+    width: 100%;
+  }
+  h2,p,h1{
+    text-transform: capitalize;
+  }
+  .img_res{
+    height: 250px;
+    width: 250px;
+  }
+  .proce_deal{
+    position: absolute;
+    margin-left: 50%;
+  }
+  .time_add{
+    background-color:  #fff;
+    height: 79px;
+    width: 100%;
+    display:flex ;
+
+ 
+    
+    
+  }
+  .time_add p{
+    color: #34a853;
+    font-size: 20px;
+    text-transform: capitalize;
+  }
+  .time_add button{
+    position: absolute;
+    width: 130px;
+    height: 60px;
+    margin-left: 46%;
+    background-color:  #fff(238, 83, 83);
+    font-style: normal;
+    background-color: #ef534e;
+    border: 0.3px solid #850804;
+    border-radius: 5px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .time_add{
+      display: block;
+      
+    }
+    .time_add button{
+     margin: 0%;
+      
+    }
+    .name_deal_div h3{
+      display:block;
+      position: relative;
+      margin-left: 0px;
+
+    }
+    .deal_img_div{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 250px;
+      background-color:  #af3838(162, 116, 59);
+      position: relative;
+      
+    }
+    .deal_img_div img{
+      height: 200px;
+      width: 200px;
+    }
+  }
+  /* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+.London{
+  border: 0.5px solid rgb(208, 207, 207);
+}

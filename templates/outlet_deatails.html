@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'src/styles/outlet_deatails.css' %}">
+    <script src="{% static 'src/scripts/outlet_deatails.js' %}"></script>
+</head>
+<body>
+    
+<section class="deals_body">
+    <div class="deal-nav">
+        <div>
+            <img class="deals_logo" src="{% static 'src/images/deals_logo.png' %}" alt="">
+        </div>
+        <div class="search_deals">
+            <input placeholder="Search..." type="text">
+            <button type="submit">Go</button>
+        </div>
+    </div>
+    <br><br>
+    {% for data in outlet_datas %}
+    <div class="deail_deal_div_main" >
+        <div class="deail_deal_div" >
+            <div class="property_div" >
+                <p> casual dinning </p>
+                <h1>{{ data.item_name }}</h1>
+                <p>{{ data.description }}</p>
+
+            </div>
+            <div class="deal_img_div" >
+                <img class="img_res" src="{{ data.item_img.url }}" alt="{{ item.item_name }}">
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+    <br> <br>
+    {% for data in outlet_datas %}
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'London')">DEALS</button>
+        <button class="tablinks" onclick="openCity(event, 'Paris')">ABOUT</button>
+        <button class="tablinks" onclick="openCity(event, 'Tokyo')">PHOTOS</button>
+    </div>
+      
+      <!-- Tab content -->
+      <div id="London" class="tabcontent">
+        <div class="cards_deals" >
+            
+            <div class="name_deal_div" >
+                <h2 class="deal_name" > 
+                    <h1>{{ data.item_name }}</h1>
+
+                </h2>
+                
+            </div>
+            <div class="name_deal_div" >
+            <h3 class="proce_deal">{{ data.item_price }}</h3>
+            </div>
+
+            <div class="time_add">
+                <p>timing from{{ data.start_time }} - time end {{ data.end_time }}</p>
+                <button> ADD</button>
+    
+            </div>
+    
+        </div>
+      </div>
+      
+      <div id="Paris" class="tabcontent">
+        <h3>{{ data.item_name }}</h3>
+        <p>{{ data.about }}</p>
+      </div>
+      
+      <div id="Tokyo" class="tabcontent">
+        <h3>Deal photos</h3>
+        <img class="img_res" src="{{ data.item_img.url }}" alt="{{ item.item_name }}">
+   </div>
+    {% endfor %}
+      
+    
+
+</section>
+
+
+</body>
+</html>
