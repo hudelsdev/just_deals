@@ -109,9 +109,9 @@
 					<div class="col-md-6 col-lg-5">
 						<div class="login-box bg-white box-shadow border-radius-10">
 							<div class="login-title">
-								<h2 class="text-center text-primary">Login To DeskApp</h2>
+								<h2 class="text-center text-primary">Login For Dealers</h2>
 							</div>
-							<form class="form" action="{% url 'index_main' %}" method="post">
+							<form class="form" action="{% url 'dealer_login' %}" method="post">
 								{% csrf_token %}
 								
 								{% comment %} add names for username and password {% endcomment %}

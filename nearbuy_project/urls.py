@@ -24,7 +24,7 @@ urlpatterns = [
     path('',include('nearbuy_app.urls')),
     path('',include('deal_app.urls')),
     path('',include('accounts_app.urls')),
-
+    path('',include('admin_backend.urls')),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
 

@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_backend',
     'nearbuy_app',
     'deal_app',
     'django.contrib.admin',

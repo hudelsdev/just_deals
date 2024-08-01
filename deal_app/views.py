@@ -5,13 +5,13 @@ from deal_app.models import*
 # from datetime import time
 from datetime import datetime
 from django.contrib import messages
-from.decorators import dealer_login_required
+from admin_backend.decorators import super_login_required
 from django.shortcuts import render, redirect
 from .models import Outlet
 # from django.core.mail import send_mail
 from django.contrib.auth import authenticate,login as auth_login,logout,login
 # Create your views here.
-@dealer_login_required
+@super_login_required
 def dealer_index(request):
     dealerdatas = RegisterDealer.objects.all()
     return render(request, 'dealer_index.html', {'dealerdatas': dealerdatas})
@@ -50,30 +50,23 @@ def deal_register(request):
                 messages.success(request, "Password is incorrect")
     choices=RegisterDealer.drop_merchant_type
     return render(request,'deal_register.html' ,{'choices':choices})                       
-                                
-
-#check if the  username is unique
-
-       
- 
-
             
 # views for login page///////
 
 def dealer_login(request):
-    if request.user.is_authenticated:
-        return redirect("index_main")
-    user = request.user 
-    if request.method == "POST":
-        user_name = request.POST.get("uname")
-        password = request.POST.get("password")
-        user = authenticate(user_name=user_name,password=password)
-        if user:
-            login(request,user)
-            messages.success(request,"Login Success")
-            return redirect("index_main")      
-        messages.error(request, "Invalid username or password")
-    return render(request,"dealer_login.html")
+    if request.method == 'POST':
+        username=request.POST['uname']
+        password=request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('add_fields')
+        else:
+            return render(request,'dealer_login.html')
+    else:
+        
+        return render(request,"dealer_login.html")
 
 
 #forgot password///////
@@ -85,7 +78,7 @@ def forgot_password(request):
     
     #logout
 
-def admin_logout(request):
+def dealer_logout(request):
     logout(request)
     return redirect("dealer_login")
 # ////////////////////
@@ -168,7 +161,7 @@ def outlet_fields_add(request):
         try:
             new_field = OutletFields.objects.create(
                 item_name=item_name, description=description,item_price=item_price,about=about, start_time=start_time, end_time=end_time, item_img=item_img)
-            return redirect('outlet_deatails')  # Redirect to index_main after successful creation
+            return redirect('index_main')  # Redirect to index_main after successful creation
         except Exception as e:  # Handle potential exceptions
             return render(request, 'outlet_add.html', {'message': f'Error adding item: {str(e)}'})
 

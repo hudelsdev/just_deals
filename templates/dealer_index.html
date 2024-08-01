@@ -222,7 +222,7 @@
 						<a class="dropdown-item" href="faq.html"
 							><i class="dw dw-help"></i> Help</a
 						>
-						<a class="dropdown-item" href="{%url 'admin_logout' %}"
+						<a class="dropdown-item" href="{%url 'dealer_logout' %}"
 							><i class="dw dw-logout"></i> Log Out</a
 						>
 					</div>
@@ -1012,7 +1012,7 @@
 									</div>
 								</div>
 							</td>
-							<td>{{ dealerdata.drop_merchant_type }}</td>
+							<td>{{ dealerdata.merchant_type }}</td>
 							<td>{{ dealerdata.merchant_address }}</td>
 							<td>{{ dealerdata.phone }}</td>
 							<td>{{ dealerdata.user.email }}</td>

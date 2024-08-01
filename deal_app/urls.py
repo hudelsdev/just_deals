@@ -10,5 +10,7 @@ urlpatterns =[
    path('outlet_deatails',outlet_deatails,name='outlet_deatails'),
    path('outlet_fields_add',outlet_fields_add,name='outlet_add'),
    path('unauthorized',unauthorized,name='unauthorized'),
+   path('dealer_logout',dealer_logout,name='dealer_logout'),
+
   
 ]

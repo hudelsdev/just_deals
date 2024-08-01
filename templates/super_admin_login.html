@@ -1,0 +1,38 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'src/styles/style.css' %}" />
+</head>
+<body>
+    <section class="super_admin_login" >
+        <form class="login-form"  method="post" >
+            {% csrf_token %}
+            <p class="login-title">Sign in to Super Admin</p>
+            <div class="field-group">
+                <input type="text" placeholder="Enter username" name="username" class="username-input">
+                <span class="username-error">
+                </span>
+            </div>
+            <div class="field-group">
+                <input type="password" placeholder="Enter password" class="password-input" name="password">
+            </div>
+            <button type="submit" class="submit-button">
+                Sign in
+            </button>
+            {% if error %}
+            <p>{{ error }}</p>
+            {% endif %}
+        {% include 'messages.html' %}
+        </form>
+    </section>
+</body>
+</html>
+
+
+
+
