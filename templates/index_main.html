@@ -514,13 +514,13 @@
           <div class="col-md-3">
             <a href="{% url 'outlet_deatails' %}">
             <div class="card text-center py-4 mb-3 border rounded-3">
-              <a href="shop.html">
+              <a href="{% url 'outlet_deatails' %}">
                 <h5 class="mt-2"><a href="{% url 'outlet_deatails' %}">{{ item.item_name }}</a></h5>
+                <img class="img_spcl_food" src="{{ item.item_img.url }}" alt="{{ item.item_name }}">
+                <p>{{ item.description }}</p>
+                <h5>{{ item.start_time }}</h5>
+                <h5>{{ item.end_time }}</h5>
               </a>
-              <img class="img_spcl_food" src="{{ item.item_img.url }}" alt="{{ item.item_name }}">
-              <p>{{ item.description }}</p>
-              <h5>{{ item.start_time }}</h5>
-              <h5>{{ item.end_time }}</h5>
             </div>
           </a>
           </div>

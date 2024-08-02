@@ -2,12 +2,13 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from nearbuy_app.models import*
+from admin_backend.decorators import super_login_required   
 # from django.core.mail import send_mail
 from django.contrib.auth import authenticate,login as auth_login,logout,login
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+@super_login_required
 def admin_index(request):
     userdatas = register_user.objects.all()
     return render(request, 'admin_index.html', {'userdatas': userdatas})

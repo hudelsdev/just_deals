@@ -24,7 +24,7 @@ class RegisterDealer(models.Model):
 
     )
 
-    user = models.ForeignKey(Dealer,on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(Dealer,on_delete=models.CASCADE,null=True)
     merchant_name = models.CharField(max_length=255)
     merchant_type=models.CharField(choices=drop_merchant_type, null=True,max_length=30)
     merchant_address=models.CharField(null=True,max_length=30)

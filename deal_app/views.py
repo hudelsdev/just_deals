@@ -34,22 +34,51 @@ def deal_register(request):
         password=request.POST['password']
         cpassword=request.POST['cpassword']
 
-        user=Dealer.objects.filter(username=user_name)
+        # user=Dealer.objects.filter(username=user_name)
+        if User.objects.filter(username=user_name):
+            print('username is already exists') 
 
-        if not user:
-            if password==cpassword:
-                deal_user=Dealer.objects.create_user(username=user_name, password=cpassword, email=email,
-                                            )
-                deal_user.save()
-                new_deal_user=RegisterDealer(merchant_type=merchant_type,merchant_name=merchant_name,merchant_address=merchant_address,city=city,phone=phone)
-                new_deal_user.save()
-                
-                messages.success(request, "Account created successfully")
-                return redirect('dealer_login')
+            return render(request,'deal_register.html')
+        else:
+            if (password != cpassword):
+                print('password is not match')
+                return render(request,'deal_register.html')
             else:
-                messages.success(request, "Password is incorrect")
-    choices=RegisterDealer.drop_merchant_type
-    return render(request,'deal_register.html' ,{'choices':choices})                       
+                 #create a new user
+                user=User.objects.create_user(
+                                          email=email,
+                                          password=password,
+                                          username=user_name
+                                          )
+
+                user.save()
+
+                newdealer=RegisterDealer(user=user,phone=phone,merchant_type=merchant_type,city=city,merchant_name=merchant_name,merchant_address=merchant_address)
+                newdealer.save()
+                print("success")
+
+                auth_login(request, user)
+                return redirect('dealer_login')
+           
+
+    else:
+        print('not registered')
+        choices=RegisterDealer.drop_merchant_type
+        return render(request,'deal_register.html' ,{'choices':choices})                       
+    #     if not user:
+    #         if password==cpassword:
+    #             deal_user=Dealer.objects.create_user(username=user_name, password=cpassword, email=email,
+    #                                         )
+    #             deal_user.save()
+    #             new_deal_user=RegisterDealer(merchant_type=merchant_type,merchant_name=merchant_name,merchant_address=merchant_address,city=city,phone=phone)
+    #             new_deal_user.save()
+                
+    #             messages.success(request, "Account created successfully")
+    #             return redirect('dealer_login')
+    #         else:
+    #             messages.success(request, "Password is incorrect")
+    # choices=RegisterDealer.drop_merchant_type
+    # return render(request,'deal_register.html' ,{'choices':choices})                       
             
 # views for login page///////
 
