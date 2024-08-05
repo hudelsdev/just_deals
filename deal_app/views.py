@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from deal_app.models import*
 # from datetime import time
 from datetime import datetime
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from admin_backend.decorators import super_login_required
 from django.shortcuts import render, redirect
@@ -155,9 +156,10 @@ def outlet_add(request):
 
 
 ## functions for outlet_deatails 
-def outlet_deatails(request):
-    outlet_datas = OutletFields.objects.all()
-    return render(request, 'outlet_deatails.html', {'outlet_datas': outlet_datas})
+def outlet_deatails(request, pk):
+    outlet_datas = get_object_or_404(OutletFields, pk=pk)
+    # outlet_datas = OutletFields.objects.all()
+    return render(request, 'outlet_deatails.html', {'items': outlet_datas})
  
 
 ## functions for outlet_adding
@@ -196,5 +198,3 @@ def outlet_fields_add(request):
 
     else:
         return render(request, 'outlet_add.html')
-
-

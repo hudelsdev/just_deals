@@ -21,24 +21,23 @@
         </div>
     </div>
     <br><br>
-    {% for data in outlet_datas %}
     <div class="deail_deal_div_main" >
         <div class="deail_deal_div" >
             <div class="property_div" >
                 <p> casual dinning </p>
-                <h1>{{ data.item_name }}</h1>
-                <p>{{ data.description }}</p>
+                <h1>{{ items.item_name }}</h1>
+                <p>{{ items.description }}</p>
 
             </div>
             <div class="deal_img_div" >
-                <img class="img_res" src="{{ data.item_img.url }}" alt="{{ item.item_name }}">
+                <img class="img_res" src="{{ items.item_img.url }}" alt="{{ items.item_name }}">
             </div>
         </div>
 
     </div>
-    {% endfor %}
+
     <br> <br>
-    {% for data in outlet_datas %}
+    
     <div class="tab">
         <button class="tablinks" onclick="openCity(event, 'London')">DEALS</button>
         <button class="tablinks" onclick="openCity(event, 'Paris')">ABOUT</button>
@@ -51,17 +50,17 @@
             
             <div class="name_deal_div" >
                 <h2 class="deal_name" > 
-                    <h1>{{ data.item_name }}</h1>
+                    <h1>{{ items.item_name }}</h1>
 
                 </h2>
                 
             </div>
             <div class="name_deal_div" >
-            <h3 class="proce_deal">{{ data.item_price }}</h3>
+            <h3 class="proce_deal">{{ items.item_price }}</h3>
             </div>
 
             <div class="time_add">
-                <p>timing from{{ data.start_time }} - time end {{ data.end_time }}</p>
+                <p>timing from{{ items.start_time }} - time end {{ items.end_time }}</p>
                 <button> ADD</button>
     
             </div>
@@ -70,20 +69,30 @@
       </div>
       
       <div id="Paris" class="tabcontent">
-        <h3>{{ data.item_name }}</h3>
-        <p>{{ data.about }}</p>
+        <h3>{{ items.item_name }}</h3>
+        <p>{{ items.about }}</p>
       </div>
       
       <div id="Tokyo" class="tabcontent">
         <h3>Deal photos</h3>
-        <img class="img_res" src="{{ data.item_img.url }}" alt="{{ item.item_name }}">
+        {% if items.item_img %}
+        <img src="{{ items.item_img.url }}" alt="{{ items.item_name }}" />
+        {% endif %}
    </div>
-    {% endfor %}
+    
       
     
 
 </section>
 
-
+{% comment %} <h1>{{ item.item_name }}</h1>
+<p><strong>Description:</strong> {{ item.description }}</p>
+<p><strong>Price:</strong> {{ item.item_price }}</p>
+<p><strong>About:</strong> {{ item.about }}</p>
+<p><strong>Start Time:</strong> {{ item.start_time }}</p>
+<p><strong>End Time:</strong> {{ item.end_time }}</p>
+{% if item.item_img %}
+    <img src="{{ item.item_img.url }}" alt="{{ item.item_name }}" />
+{% endif %}
 </body>
-</html>
+</html> {% endcomment %}
