@@ -130,10 +130,14 @@ def outlet_add(request):
         start_time_str = request.POST.get('time-from')
         end_time_str = request.POST.get('time-to')
         item_img = request.FILES.get('image')
+        about = request.POST.get('about')
+        item_price = request.POST.get('item-price')
+
+
 
         # Basic validation (optional)
         if not item_name or not description or not start_time_str or not end_time_str:
-            return render(request, 'add_fields.html', {'message': 'Please fill in all required fields'})
+            return render(request, 'add_outlet.html', {'message': 'Please fill in all required fields'})
 
         # Try converting time strings to time objects
         try:
@@ -141,60 +145,71 @@ def outlet_add(request):
             end_time = datetime.strptime(end_time_str, '%H:%M').time()
         except ValueError:
             # Handle invalid time format
-            return render(request, 'add_fields.html', {'message': 'Invalid time format. Use HH:MM format.'})
+            return render(request, 'add_outlet.html', {'message': 'Invalid time format. Use HH:MM format.'})
 
         # Create a new model object
         try:
             new_field = Outlet.objects.create(
-                item_name=item_name, description=description, start_time=start_time, end_time=end_time, item_img=item_img)
-            return redirect('outlet_add')  # Redirect to index_main after successful creation
+                item_name=item_name, description=description, start_time=start_time, end_time=end_time, item_img=item_img,about=about,item_price=item_price)
+            return redirect('index_main')  # Redirect to index_main after successful creation
         except Exception as e:  # Handle potential exceptions
-            return render(request, 'add_fields.html', {'message': f'Error adding item: {str(e)}'})
+            return render(request, 'add_outlet.html', {'message': f'Error adding item: {str(e)}'})
 
     else:
-        return render(request, 'add_fields.html', {'message': 'Invalid request method'})
+        return render(request, 'add_outlet.html', {'message': 'Invalid request method'})
 
 
 ## functions for outlet_deatails 
 def outlet_deatails(request, pk):
-    outlet_datas = get_object_or_404(OutletFields, pk=pk)
-    # outlet_datas = OutletFields.objects.all()
-    return render(request, 'outlet_deatails.html', {'items': outlet_datas})
+    # Fetch the Outlet instance using the primary key
+    outlet_datas = get_object_or_404(Outlet, pk=pk)
+    # Render the template with the context
+    return render(request, 'outlet_deatails.html', {
+        'items': outlet_datas
+    })
+
+
+
+
+
+
+
+
  
 
 ## functions for outlet_adding
 
-def outlet_fields_add(request):
+# def outlet_fields_add(request):
     
-    if request.method == 'POST':
-        # Extract data from the request
-        item_name = request.POST.get('item-name')
-        description = request.POST.get('description')
-        item_price = request.POST.get('item-price')
-        about = request.POST.get('about')
-        start_time_str = request.POST.get('time-from')
-        end_time_str = request.POST.get('time-to')
-        item_img = request.FILES.get('image')
+#     if request.method == 'POST':
+#         # Extract data from the request
+#         item_name = request.POST.get('item-name')
+#         description = request.POST.get('description')
+#         item_price = request.POST.get('item-price')
+#         about = request.POST.get('about')
+#         start_time_str = request.POST.get('time-from')
+#         end_time_str = request.POST.get('time-to')
+#         item_img = request.FILES.get('image')
 
-        # Basic validation (optional)
-        if not item_name or not description or not item_price or not about or not start_time_str or not end_time_str:
-            return render(request, 'outlet_add.html', {'message': 'Please fill in all required fields'})
+#         # Basic validation (optional)
+#         if not item_name or not description or not item_price or not about or not start_time_str or not end_time_str:
+#             return render(request, 'outlet_add.html', {'message': 'Please fill in all required fields'})
 
-        # Try converting time strings to time objects
-        try:
-            start_time = datetime.strptime(start_time_str, '%H:%M').time()  # Parse time in HH:MM format
-            end_time = datetime.strptime(end_time_str, '%H:%M').time()
-        except ValueError:
-            # Handle invalid time format
-            return render(request, 'outlet_add.html', {'message': 'Invalid time format. Use HH:MM format.'})
+#         # Try converting time strings to time objects
+#         try:
+#             start_time = datetime.strptime(start_time_str, '%H:%M').time()  # Parse time in HH:MM format
+#             end_time = datetime.strptime(end_time_str, '%H:%M').time()
+#         except ValueError:
+#             # Handle invalid time format
+#             return render(request, 'outlet_add.html', {'message': 'Invalid time format. Use HH:MM format.'})
 
-        # Create a new model object
-        try:
-            new_field = OutletFields.objects.create(
-                item_name=item_name, description=description,item_price=item_price,about=about, start_time=start_time, end_time=end_time, item_img=item_img)
-            return redirect('index_main')  # Redirect to index_main after successful creation
-        except Exception as e:  # Handle potential exceptions
-            return render(request, 'outlet_add.html', {'message': f'Error adding item: {str(e)}'})
+#         # Create a new model object
+#         try:
+#             new_field = OutletFields.objects.create(
+#                 item_name=item_name, description=description,item_price=item_price,about=about, start_time=start_time, end_time=end_time, item_img=item_img)
+#             return redirect('index_main')  # Redirect to index_main after successful creation
+#         except Exception as e:  # Handle potential exceptions
+#             return render(request, 'outlet_add.html', {'message': f'Error adding item: {str(e)}'})
 
-    else:
-        return render(request, 'outlet_add.html')
+#     else:
+#         return render(request, 'outlet_add.html')

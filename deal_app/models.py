@@ -39,16 +39,14 @@ class Outlet(models.Model):
   start_time = models.TimeField() 
   end_time = models.TimeField()  # Add validator
   item_img = models.ImageField(upload_to='images/', blank=True)  # Assuming image storage
-
+  item_price = models.IntegerField(null=True, blank=True, default=0)  # Provide default value
+  about = models.TextField(null=True, blank=True, default='')  # Provide default value
+  
 
 ##model for outlet details
 
-class OutletFields(models.Model):
-  user = models.ForeignKey(Dealer,on_delete=models.CASCADE, null=True)
-  item_name = models.CharField(max_length=255, null=True,blank=True)
-  description = models.TextField(null=True, blank=True)
-  item_price = models.IntegerField(null=True,blank=True)
-  about = models.TextField(null=True, blank=True)
-  start_time = models.TimeField() 
-  end_time = models.TimeField()  # Add validator
-  item_img = models.ImageField(upload_to='images/', blank=True)  # Assuming image storage
+# class OutletFields(models.Model):
+#   outlet = models.OneToOneField(Outlet, on_delete=models.CASCADE,null=True, related_name='fields')
+#   item_price = models.IntegerField(null=True, blank=True, default=0)  # Provide default value
+#   about = models.TextField(null=True, blank=True, default='')  # Provide default value
+#   item_img = models.ImageField(upload_to='images/', blank=True)

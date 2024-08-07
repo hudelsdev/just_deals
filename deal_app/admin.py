@@ -5,4 +5,3 @@ from .models import*
 
 admin.site.register(RegisterDealer)
 admin.site.register(Outlet)
-admin.site.register(OutletFields)

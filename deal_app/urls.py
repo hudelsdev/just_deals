@@ -6,9 +6,9 @@ urlpatterns =[
    path('dealer_index',dealer_index,name='dealer_index'),  
    path('dealer_login',dealer_login,name='dealer_login'),  
    path('',index_main,name='index_main'),
-   path('outlet_add',outlet_add,name='add_fields'), 
+   path('outlet_add',outlet_add,name='add_outlet'), 
    path('outlet_deatails/<int:pk>/',outlet_deatails,name='outlet_deatails'),
-   path('outlet_fields_add',outlet_fields_add,name='outlet_add'),
+   # path('outlet_fields_add',outlet_fields_add,name='outlet_add'),
    path('unauthorized',unauthorized,name='unauthorized'),
    path('dealer_logout',dealer_logout,name='dealer_logout'),
 
