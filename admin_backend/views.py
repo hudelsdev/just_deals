@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout
+from deal_app.models import*
 
 
 # Create your views here.
@@ -31,3 +32,11 @@ def super_admin_logout(request):
     logout(request)
     messages.success(request, "Logout successful")
     return redirect('super_admin_login') 
+
+
+def outlet_list(request):
+    items = Outlet.objects.all()
+    return render(request,'outlet_list.html',{'items':items} )
+
+def outlet_items_edit(request):
+    return render(request,'outlet_items_edit.html')
