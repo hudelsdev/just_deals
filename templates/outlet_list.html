@@ -159,7 +159,7 @@ img{
                     <h3 class="text-themecolor">Categories</h3>
                 </div>
             </div>
-            <a href="{% url 'outlet_list' %}" class="btn btn-success">Add Category</a>
+            <a href="{% url 'add_outlet' %}" class="btn btn-success">Add Category</a>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -196,8 +196,8 @@ img{
                                                 {% endif %}
                                                 </td>
                                                 <td>
-                                                    <a href="{% url 'outlet_items_edit' %}" class="btn btn-primary btn-sm">Edit</a>
-                                                    <form method="post" action="" style="display: inline;">
+                                                    <a href="{% url 'outlet_items_edit' pk=item.pk %}" class="btn btn-primary btn-sm">Edit</a>
+                                                    <form method="post" action="{% url 'outlet_items_delete' pk=item.pk %}" style="display: inline;">
                                                         {% csrf_token %}
                                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                     </form>
