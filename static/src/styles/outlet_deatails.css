@@ -131,7 +131,11 @@
   }
   .proce_deal{
     position: absolute;
-    margin-left: 50%;
+    margin-left: 48%;
+    color: #34a853;
+    font-size: 25px;
+    font-family: serif;
+
   }
   .time_add{
     background-color:  #fff;
@@ -144,24 +148,36 @@
     
   }
   .time_add p{
-    color: #34a853;
+    color: #6a736c;
     font-size: 20px;
     text-transform: capitalize;
+    font-family:serif;
+  }
+  .time_add p + p {
+    margin-left: 20px; /* Adjust this value to control the spacing */
   }
   .time_add button{
     position: absolute;
-    width: 130px;
-    height: 60px;
+    width: 100px;
+    height: 50px;
     margin-left: 46%;
+    color:#fff;
     background-color:  #fff(238, 83, 83);
     font-style: normal;
     background-color: #ef534e;
-    border: 0.3px solid #850804;
+    border: 0.3px solid #935153;
     border-radius: 5px;
   }
-
+  .item_description{
+    background-color: #f0ecec;
+    font-family: serif;
+  }
+  .item_pic{
+    height: 250px;
+    width: 250px;
+  }
   @media screen and (max-width: 1200px) {
-    .time_add{
+    .time_add {
       display: block;
       
     }
@@ -169,11 +185,22 @@
      margin: 0%;
       
     }
+    .time_add p + p {
+      margin-left: 0px; /* Adjust this value to control the spacing */
+    }
     .name_deal_div h3{
       display:block;
       position: relative;
-      margin-left: 0px;
+      margin-left: 5px;
+      text-transform: capitalize;
 
+    }
+    h3{
+      text-transform: capitalize;
+    }
+    p{
+      font-family: sans-serif;
+      line-height: 23px;
     }
     .deal_img_div{
       display:flex;
@@ -237,4 +264,25 @@
 }
 .London{
   border: 0.5px solid rgb(208, 207, 207);
+}
+
+.rupee-icon{
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  margin-left: 46.5%;}
+@media screen and (max-width: 1200px) {
+  .rupee-icon{
+      position: relative;
+      margin-left: 2px;
+  }  
+ 
+}
+@media screen and (max-width: 450px) {
+
+  .item_description {
+    max-height: 160px; /* Adjust the height as needed */
+    overflow-y: auto; /* Add vertical scrollbar if content overflows */
+    padding: 5px; /* Optional: Add padding for better readability */
+}
 }

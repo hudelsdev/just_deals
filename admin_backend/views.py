@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login,logout
 from deal_app.models import*
 from django.shortcuts import render, get_object_or_404
+from admin_backend.decorators import super_login_required
 
 
 
@@ -35,7 +36,7 @@ def super_admin_logout(request):
     messages.success(request, "Logout successful")
     return redirect('super_admin_login') 
 
-
+@super_login_required
 def outlet_list(request):
     items = Outlet.objects.all()
     return render(request,'outlet_list.html',{'items':items} )

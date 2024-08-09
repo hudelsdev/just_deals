@@ -26,7 +26,7 @@
             <div class="property_div" >
                 <p> casual dinning </p>
                 <h1>{{ items.item_name }}</h1>
-                <p>{{ items.description }}</p>
+                <p class="item_description" >{{ items.description }}</p>
 
             </div>
             <div class="deal_img_div" >
@@ -56,11 +56,14 @@
                 
             </div>
             <div class="name_deal_div" >
-            <h3 class="proce_deal">{{ items.item_price }}</h3>
+                <img class="rupee-icon" src="{% static 'src/images/rupee-indian (1).png' %}" alt="Rupee" >
+                <h3 class="proce_deal">{{ items.item_price }} /-</h3>
             </div>
+            
 
             <div class="time_add">
-                <p>timing from{{ items.start_time }} - time end {{ items.end_time }}</p>
+                <p>| timing from  {{ items.start_time }} </p> 
+                <p>| time end  {{ items.end_time }}</p>
                 <button> ADD</button>
     
             </div>
@@ -76,7 +79,7 @@
       <div id="Tokyo" class="tabcontent">
         <h3>Deal photos</h3>
         {% if items.item_img %}
-        <img src="{{ items.item_img.url }}" alt="{{ items.item_name }}" />
+        <img class="item_pic" src="{{ items.item_img.url }}" alt="{{ items.item_name }}" />
         {% endif %}
    </div>
 
