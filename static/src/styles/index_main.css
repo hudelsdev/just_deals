@@ -123,6 +123,7 @@ CSS STRUCTURE:
     color: var(--black-color);
     letter-spacing: 0.01rem;
     line-height: normal;
+    font-size: 15px;
   }
   a {
     color: var(--black-color);
@@ -971,7 +972,7 @@ CSS STRUCTURE:
   
   @media only screen and (max-width: 765px) {
     section#billboard{
-      height: 100vh !important;
+      height: 45vh !important;
     }
   }
   

@@ -399,7 +399,7 @@
                 </div>
                 <div class="col-md-6 text-center">
                   <div class="image-holder">
-                    <img src="images/banner-image.png" class="img-fluid" alt="banner">
+                    <img src="{% static "src/images/carosile3.webp" %}" class="img-fluid" alt="banner">
                   </div>
                 </div>
               </div>
@@ -417,7 +417,7 @@
                 </div>
                 <div class="col-md-6 text-center">
                   <div class="image-holder">
-                    <img src="images/banner-image1.png" class="img-fluid" alt="banner">
+                    <img src="{% static "src/images/carosile.webp" %}" class="img-fluid" alt="banner">
                   </div>
                 </div>
               </div>
@@ -435,8 +435,7 @@
                 </div>
                 <div class="col-md-6 text-center">
                   <div class="image-holder">
-                    <img src="images/banner-image2.png" class="img-fluid" alt="banner">
-                  </div>
+                    <img src="{% static 'src/images/carosile2.webp' %}" class="img-fluid" alt="banner">                  </div>
                 </div>
               </div>
             </div>
@@ -518,8 +517,8 @@
                 <h5 class="mt-2"><a href="{% url 'outlet_deatails' pk=item.pk %}">{{ item.item_name }}</a></h5>
                 <img class="img_spcl_food" src="{{ item.item_img.url }}" alt="{{ item.item_name }}">
                 <p>{{ item.description }}</p>
-                <h5>{{ item.start_time }}</h5>
-                <h5>{{ item.end_time }}</h5>
+                {% comment %} <h5>{{ item.start_time }}</h5>
+                <h5>{{ item.end_time }}</h5> {% endcomment %}
               </a>
             </div>
           </a>
@@ -549,7 +548,7 @@
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item1.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p1.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">IPad (9th Gen)</a></h5>
                 <span class="price text-primary fw-light mb-2">$870</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -570,7 +569,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item2.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p2.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">Drone With Camera</a></h5>
                 <span class="price text-primary fw-light mb-2">$600</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -591,7 +590,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item3.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p3.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">Apple Watch (2nd Gen)</a></h5>
                 <span class="price text-primary fw-light mb-2">$400</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -612,7 +611,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item4.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p4.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">Ultra HD TV</a></h5>
                 <span class="price text-primary fw-light mb-2">$2000</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -633,7 +632,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item5.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p5.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">Bluetooth Speaker</a></h5>
                 <span class="price text-primary fw-light mb-2">$75</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -654,7 +653,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item6.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p1.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">White Headset</a></h5>
                 <span class="price text-primary fw-light mb-2">$99</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -675,7 +674,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item7.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p6.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">Black Bluetooth Speaker</a></h5>
                 <span class="price text-primary fw-light mb-2">$80</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -696,7 +695,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item8.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p2.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">Large Speaker</a></h5>
                 <span class="price text-primary fw-light mb-2">$450</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -717,7 +716,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item9.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p5.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">White EarPods</a></h5>
                 <span class="price text-primary fw-light mb-2">$600</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -738,7 +737,7 @@
             </div>
             <div class="swiper-slide">
               <div class="card position-relative text-center py-4 border rounded-3">
-                <img src="images/product-item10.png" class="img-fluid" alt="product item">
+                <img src="{% static "src/images/p4.webp" %}" class="img-fluid" alt="product item">
                 <h5 class="mt-2"><a href="single-product.html">Laptop</a></h5>
                 <span class="price text-primary fw-light mb-2">$1200</span>
                 <div class="card-concern position-absolute start-0 end-0 d-flex gap-2">
@@ -1335,7 +1334,7 @@
             <div class="payment-method d-flex">
               <p>Payment options:</p>
               <div class="card-wrap ps-2">
-                <img src="images/visa.jpg" alt="visa">
+                <img src="{% static "vendors/images/visa.jpg" %}" alt="visa">
                 <img src="images/mastercard.jpg" alt="mastercard">
                 <img src="images/paypal.jpg" alt="paypal">
               </div>
