@@ -546,6 +546,20 @@
 						<ul class="submenu">
 							<li><a href="{% url 'admin_index' %}">Admin Dashboard</a></li>
 							
+							{% comment %} <thead>
+								<tr>
+									<th>Number</th>
+									
+								</tr>
+							</thead> {% endcomment %}
+
+							{% for dealerdata in dealerdatas %}
+							{% comment %} <td>{{ forloop.counter }}.</td> {% endcomment %}
+
+								<li><a href="">{{ dealerdata.user.username }}</a></li>
+							
+							{% endfor %}
+							
 						</ul>
 					</li>
 					<!-- <li class="dropdown">

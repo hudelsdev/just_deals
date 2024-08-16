@@ -96,5 +96,5 @@ def admin_logout(request):
     return redirect("admin_login")
 
 
-
-
+def about_page(request):
+    return render(request,"about.html")

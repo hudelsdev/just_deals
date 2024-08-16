@@ -1324,19 +1324,22 @@
       <div class="container">
         <div class="d-flex flex-wrap justify-content-between">
           <div class="ship-and-payment d-flex gap-md-5 flex-wrap">
-            <div class="shipping d-flex">
+            {% comment %} <div class="shipping d-flex">
               <p>We ship with:</p>
               <div class="card-wrap ps-2">
                 <img src="images/dhl.png" alt="visa">
                 <img src="images/shippingcard.png" alt="mastercard">
               </div>
-            </div>
+            </div> {% endcomment %}
             <div class="payment-method d-flex">
-              <p>Payment options:</p>
+              {% comment %} <p>Payment options:</p> {% endcomment %}
               <div class="card-wrap ps-2">
-                <img src="{% static "vendors/images/visa.jpg" %}" alt="visa">
+                <a href=""><P> About Us</p></a>
+                <a href=""><P> Policy</p></a>
+                <a href=""> <P>Contact Us</p></a>
+                {% comment %} <img src="{% static "vendors/images/visa.jpg" %}" alt="visa">
                 <img src="images/mastercard.jpg" alt="mastercard">
-                <img src="images/paypal.jpg" alt="paypal">
+                <img src="images/paypal.jpg" alt="paypal"> {% endcomment %}
               </div>
             </div>            
           </div>

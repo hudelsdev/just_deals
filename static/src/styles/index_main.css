@@ -1143,3 +1143,41 @@ CSS STRUCTURE:
   img.img_spcl_food {
     height: 250px;
     }
+
+
+/* ///////////////////// style for about page////////////////////////////////// */
+
+h1{
+	body {
+		font-family: Arial, sans-serif;
+		margin: 0;
+		padding: 0;
+	}
+	
+	.container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+	
+	.about-us {
+		text-align: center;
+		padding: 40px 0;
+	}
+	
+	h1, h2 {
+		text-transform: uppercase;
+	}
+	
+	p {
+		line-height: 1.5;
+	}
+	
+	/* Responsive adjustments */
+	@media (max-width: 768px) {
+		/* Adjust layout for tablets */
+	}
+	
+	@media (max-width: 480px) {
+		/* Adjust layout for mobile devices */
+	} }

@@ -91,7 +91,7 @@ def dealer_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('add_fields')
+            return redirect('add_outlet')
         else:
             return render(request,'dealer_login.html')
     else:
@@ -102,7 +102,6 @@ def dealer_login(request):
 #forgot password///////
 
 def forgot_password(request):
-
     return render(request,'password_reset_done.html')
 
     

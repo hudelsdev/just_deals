@@ -33,7 +33,7 @@ class RegisterDealer(models.Model):
 
 
 class Outlet(models.Model):
-  user = models.ForeignKey(Dealer,on_delete=models.CASCADE, null=True)
+  user = models.OneToOneField(Dealer, on_delete=models.CASCADE, null=True, unique=True)  # Ensure only one outlet per dealer
   item_name = models.CharField(max_length=255, null=True,blank=True)
   description = models.TextField(null=True, blank=True)
   start_time = models.TimeField() 
