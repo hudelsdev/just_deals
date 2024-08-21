@@ -1,0 +1,116 @@
+
+{% load static%}
+{% include 'messages.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>deal_registerpage</title>
+    
+    <link rel="stylesheet" href="{% static 'src/styles/style.css' %}">
+    
+  </head>
+  <body>
+
+    
+	<section class="reg_main"  >
+
+        <div class="reg_img">
+			<img src="{% static 'src/images/register.jpg' %}" alt="">
+		</div>
+	
+		<form class="form" enctype="multipart/form-data" action="{% url 'register_and_add_outlet' %}" method="post">
+			{% csrf_token %}
+			
+			<p class="title">Register and Add Outlet</p>
+			
+			<!-- Registration Fields -->
+			<div class="registration-section">
+				<h2>Register</h2> <br><br>
+				
+				<label for="merchant_type">merchant_type</label>
+				<select class="input" name="merchant_type" required>
+					{% for choice in choices %}
+					<option value="{{ choice.0 }}">{{ choice.1 }}</option>
+					{% endfor %}
+					
+				</select><br><br>
+				
+				<label>
+					<input class="input" type="text" placeholder="" required="" name="merchant_name">
+					<span>Merchant Name</span>
+				</label>
+				<label>
+					<input class="input" type="text" placeholder="" required="" name="merchant_address">
+					<span>Merchant Address</span>
+				</label>
+				<label>
+					<input type="text" class="input" name="city" placeholder="Enter your city" required>
+				</label>
+				<label>
+					<input class="input" type="number" placeholder="" required="" name="phone">
+					<span>Phone</span>
+				</label>
+				<label>
+					<input class="input" type="email" placeholder="" required="" name="email">
+					<span>Email</span>
+				</label>
+				<label>
+					<input class="input" type="text" placeholder="" required="" name="uname">
+					<span>Username</span>
+				</label>
+				<label>
+					<input class="input" type="password" id="pass" placeholder="" required="" name="password">
+					<span>Password</span>
+				</label>
+				<label>
+					<input class="input" type="password" id="confirm_pass" placeholder="" required="" name="cpassword">
+					<span>Confirm Password</span>
+				</label>
+			</div>
+			
+			<hr>
+			
+			<!-- Outlet Fields -->
+			<div class="outlet-section">
+				<h2>Add Outlet</h2>
+				
+				<div class="form-group">
+					<label for="item-name">Outlet Name:</label>
+					<input type="text" id="item-name" name="item-name" required>
+				</div>
+				<div class="form-group">
+					<label for="description">Outlet Description:</label>
+					<textarea id="description" name="description" rows="4" required></textarea>
+				</div>
+				<div class="form-group">
+					<label for="time-from">Time From:</label>
+					<input type="time" id="time-from" name="time-from" required>
+					<label for="time-to">To:</label>
+					<input type="time" id="time-to" name="time-to" required>
+				</div>
+				
+				<div class="form-group">
+					<label for="image">Upload Image:</label>
+					<input type="file" id="image" name="image" accept="image/*" required>
+					<span class="file-label">Accepted formats: JPG, JPEG, PNG</span>
+				</div>
+				
+			</div>
+			
+			<input class="submit" type="submit" value="Register and Add Outlet" name="submit">
+		</form>
+		
+	</section>
+	
+  </body>
+</html>
+
+
+
+
+   
+    

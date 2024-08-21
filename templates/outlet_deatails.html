@@ -25,12 +25,12 @@
         <div class="deail_deal_div" >
             <div class="property_div" >
                 <p> casual dinning </p>
-                <h1>{{ items.item_name }}</h1>
-                <p class="item_description" >{{ items.description }}</p>
+                <h1>{{ items.outlet_name }}</h1>
+                <p class="item_description" >{{ items.outlet_description }}</p>
 
             </div>
             <div class="deal_img_div" >
-                <img class="img_res" src="{{ items.item_img.url }}" alt="{{ items.item_name }}">
+                <img class="img_res" src="{{ items.outlet_img.url }}" alt="{{ items.outlet_name }}">
             </div>
         </div>
 
@@ -50,14 +50,14 @@
             
             <div class="name_deal_div" >
                 <h2 class="deal_name" > 
-                    <h1>{{ items.item_name }}</h1>
+                    <h1>{{ items.voucher_name }}</h1>
 
                 </h2>
                 
             </div>
             <div class="name_deal_div" >
                 <img class="rupee-icon" src="{% static 'src/images/rupee-indian (1).png' %}" alt="Rupee" >
-                <h3 class="proce_deal">{{ items.item_price }} /-</h3>
+                <h3 class="proce_deal">{{ items.voucher_price }} /-</h3>
             </div>
             
 
@@ -72,8 +72,8 @@
       </div>
       
       <div id="Paris" class="tabcontent">
-        <h3>{{ items.item_name }}</h3>
-        <p>{{ items.about }}</p>
+        <h3>{{ items.voucher_name }}</h3>
+        <p>{{ items.voucher_about }}</p>
       </div>
       
       <div id="Tokyo" class="tabcontent">

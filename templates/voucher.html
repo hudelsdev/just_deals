@@ -9,37 +9,37 @@
 </head>
 <body>
     <section class="sec_add_fields" >
-        <form  method="post" enctype="multipart/form-data" class="add_field_form" >
+        <form  method="post"  action="{% url 'voucher_add' %}" enctype="multipart/form-data" class="add_field_form" >
             {% csrf_token %}
             <div class="form-group">
-                <label for="item-name">Item Name:</label>
+                <label for="item-name">Voucher Name:</label>
                 <input type="text" id="item-name" name="item-name" required>
             </div>
             <div class="form-group">
-                <label for="description">Description:</label>
+                <label for="description">voucher Description:</label>
                 <textarea id="description" name="description" rows="4" required></textarea>
             </div>
             <div class="form-group">
-                <label for="item-name">Item Price:</label>
+                <label for="item-name">Voucher Price:</label>
                 <input type="Number" id="item-price" name="item-price" required>
             </div>
-            <div class="form-group">
+            {% comment %} <div class="form-group">
                 <label for="time-from">Time From:</label>
                 <div class="time-inputs">
                     <input type="time" id="time-from" name="time-from" required>
                     <span>to</span>
                     <input type="time" id="time-to" name="time-to" required>
                 </div>
-            </div>
+            </div> {% endcomment %}
             <div class="form-group">
-                <label for="description">About</label>
+                <label for="description">voucher About</label>
                 <textarea id="about" name="about" rows="4" required></textarea>
             </div>
-            <div class="form-group">
+            {% comment %} <div class="form-group">
                 <label for="image">Upload Image:</label>
                 <input type="file" id="image" name="image" accept="image/*" required>
                 <span class="file-label">Accepted formats: JPG, JPEG, PNG</span>
-            </div>
+            </div> {% endcomment %}
             <div class="form-group">
                 
                 <button type="submit">Add Item</button>

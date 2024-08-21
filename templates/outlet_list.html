@@ -145,7 +145,7 @@ img{
 </head>
 <body>
      <div class="category_search">
-    <form method="GET" action="{% url 'outlet_list' %}" class="app-search">
+    <form method="GET" action="{% url 'dealer_vouchers' %}" class="app-search">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
@@ -159,12 +159,12 @@ img{
                     <h3 class="text-themecolor">Categories</h3>
                 </div>
             </div>
-            <a href="{% url 'add_outlet' %}" class="btn btn-success">Add Outlet</a>
+            <a href="{% url 'voucher_add' %}" class="btn btn-success">Add Outlet</a>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Category List</h4>
+                            <h4 class="card-title">Category Listfor {{ request.user.username }}</h4>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -173,10 +173,10 @@ img{
                                             <th>Outlet-Name</th>
                                             <th>Description</th>
                                             <th>Price</th>
-                                            <th>Time_From</th>
-                                            <th>Time_To</th>
+                                            {% comment %} <th>Time_From</th>
+                                            <th>Time_To</th> {% endcomment %}
                                             <th>About</th>
-                                            <th>Image</th>
+                                            {% comment %} <th>Image</th> {% endcomment %}
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -184,17 +184,17 @@ img{
                                         {% for item in items %}
                                             <tr>
                                                 <th scope="row">{{ forloop.counter }}</th>
-                                                <td>{{ item.item_name }}</td>
-                                                <td>{{item.description}}</td>
-                                                <td>{{ item.item_price }}</td>
-                                                <td>{{ item.start_time }}</td>
-                                                <td>{{ item.end_time }}</td>
-                                                <td>{{ item.about }}</td>
-                                                <td>
+                                                <td>{{ item.voucher_name }}</td>
+                                                <td>{{item.voucher_description}}</td>
+                                                <td>{{ item.voucher_price }}</td>
+                                                {% comment %} <td>{{ item.start_time }}</td>
+                                                <td>{{ item.end_time }}</td> {% endcomment %}
+                                                <td>{{ item.voucher_about }}</td>
+                                                {% comment %} <td>
                                                 {% if item.item_img %}
                                                 <img src="{{ item.item_img.url }}" alt="{{ item.item_name }}" />
                                                 {% endif %}
-                                                </td>
+                                                </td> {% endcomment %}
                                                 <td>
                                                     <a href="{% url 'outlet_items_edit' pk=item.pk %}" class="btn btn-primary btn-sm">Edit</a>
                                                     <form method="post" action="{% url 'outlet_items_delete' pk=item.pk %}" style="display: inline;">

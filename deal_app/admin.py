@@ -3,5 +3,6 @@ from .models import*
 
 # Register your models here.
 
-admin.site.register(RegisterDealer)
-admin.site.register(Outlet)
+admin.site.register(Dealers)
+admin.site.register(Voucher)
+

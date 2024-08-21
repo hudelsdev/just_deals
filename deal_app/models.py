@@ -14,7 +14,7 @@ def validate_time_format(value):
 
 # Create your models here.
 
-class RegisterDealer(models.Model):
+class Dealers(models.Model):
     drop_merchant_type =(
       ("hotel", "Hotel"),
       ("restuarent", "Restuarent"),
@@ -24,29 +24,24 @@ class RegisterDealer(models.Model):
 
     )
 
-    user = models.OneToOneField(Dealer,on_delete=models.CASCADE,null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, unique=True)
     merchant_name = models.CharField(max_length=255)
-    merchant_type=models.CharField(choices=drop_merchant_type, null=True,max_length=30)
-    merchant_address=models.CharField(null=True,max_length=30)
-    city=models.CharField(null=True,max_length=40)
-    phone=models.IntegerField(null=True)
+    merchant_type = models.CharField(choices=drop_merchant_type, max_length=30, null=True)
+    merchant_address = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=40, null=True)
+    phone = models.BigIntegerField(null=True)
+
+    outlet_name = models.CharField(max_length=255, null=True, blank=True)
+    outlet_description = models.TextField(null=True, blank=True)
+    start_time = models.TimeField(null=True, blank=True)
+    end_time = models.TimeField(null=True, blank=True)
+    outlet_img = models.ImageField(upload_to='images/', blank=True)
+   
 
 
-class Outlet(models.Model):
-  user = models.OneToOneField(Dealer, on_delete=models.CASCADE, null=True, unique=True)  # Ensure only one outlet per dealer
-  item_name = models.CharField(max_length=255, null=True,blank=True)
-  description = models.TextField(null=True, blank=True)
-  start_time = models.TimeField() 
-  end_time = models.TimeField()  # Add validator
-  item_img = models.ImageField(upload_to='images/', blank=True)  # Assuming image storage
-  item_price = models.IntegerField(null=True, blank=True, default=0)  # Provide default value
-  about = models.TextField(null=True, blank=True, default='')  # Provide default value
-  
-
-##model for outlet details
-
-# class OutletFields(models.Model):
-#   outlet = models.OneToOneField(Outlet, on_delete=models.CASCADE,null=True, related_name='fields')
-#   item_price = models.IntegerField(null=True, blank=True, default=0)  # Provide default value
-#   about = models.TextField(null=True, blank=True, default='')  # Provide default value
-#   item_img = models.ImageField(upload_to='images/', blank=True)
+class Voucher(models.Model):
+    dealer = models.ForeignKey(Dealers, on_delete=models.CASCADE, null=True, blank=True)
+    voucher_name = models.CharField(max_length=255, blank=True, null=True)  # Optional, allows empty strings and NULLs
+    voucher_price = models.IntegerField(default=0)  # Default value of 0, no need for null=True
+    voucher_about = models.TextField(blank=True, default='')  # Default value of an empty string
+    voucher_description = models.TextField(blank=True, default='')  

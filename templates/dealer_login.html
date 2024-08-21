@@ -93,7 +93,7 @@
 				</div>
 				<div class="login-menu">
 					<ul>
-						<li><a href="{%url 'deal_register' %}">Dealer_Register</a></li>
+						<li><a href="">Dealer_Register</a></li>
 					</ul>
 				</div>
 			</div>
@@ -166,19 +166,19 @@
 											<button type="submit" class="btn btn-primary btn-lg btn-block" value="submit"> submit</button>
 											
 										</div>
-										<div
+										{% comment %} <div
 											class="font-16 weight-600 pt-10 pb-10 text-center"
 											data-color="#707373"
 										>
 											OR
-										</div>
-										<div class="input-group mb-0">
+										</div> {% endcomment %}
+										{% comment %} <div class="input-group mb-0">
 											<a
 												class="btn btn-outline-primary btn-lg btn-block"
 												href="{%url 'deal_register' %}"
 												>Register To Create Account</a
 											>
-										</div>
+										</div> {% endcomment %}
 									</div>
 								</div>
 							</form>

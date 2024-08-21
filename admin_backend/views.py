@@ -36,49 +36,60 @@ def super_admin_logout(request):
     messages.success(request, "Logout successful")
     return redirect('super_admin_login') 
 
-@super_login_required
-def outlet_list(request):
-    items = Outlet.objects.all()
-    return render(request,'outlet_list.html',{'items':items} )
+# @super_login_required
+def dealer_vouchers(request):
+    # Get the dealer associated with the logged-in user
+    try:
+        dealer = Dealers.objects.get(user=request.user)
+    except Dealers.DoesNotExist:
+        # Handle the case where no dealer is associated with the user
+        return render(request, 'outlet_list.html', {'message': 'No dealer profile found for the logged-in user.'})
+    
+    # Retrieve all vouchers associated with this dealer
+    items = Voucher.objects.filter(dealer=dealer)
+
+    return render(request, 'outlet_list.html', {'items': items})
 
 
-def outlet_items_edit(request, pk):
-    outlet_items = get_object_or_404(Outlet, pk=pk)
+
+def voucher_items_edit(request, pk):
+    # Get the voucher associated with the given primary key
+    voucher = get_object_or_404(Voucher, pk=pk)
 
     if request.method == 'POST':
         name = request.POST.get('item-name')
         description = request.POST.get('description')
         price = request.POST.get('item-price')
-        time_from = request.POST.get('time-from')
-        time_to = request.POST.get('time-to')
+        # time_from = request.POST.get('time-from')
+        # time_to = request.POST.get('time-to')
         about = request.POST.get('about')
-        image = request.FILES.get('image')
+        # image = request.FILES.get('image')
 
         # Update fields
-        outlet_items.item_name = name
-        outlet_items.description = description
-        outlet_items.item_price = price
-        outlet_items.start_time = time_from
-        outlet_items.end_time = time_to
-        outlet_items.about = about
+        voucher.voucher_name = name
+        voucher.voucher_description = description
+        voucher.voucher_price = price
+        # voucher.start_time = time_from
+        # voucher.end_time = time_to
+        voucher.voucher_about = about
         
-        if image:
-            outlet_items.item_img = image
+        # if image:
+        #     voucher.item_img = image
         
-        outlet_items.save()
-        return redirect('outlet_list')
+        voucher.save()
+        return redirect('dealer_vouchers')
 
-    return render(request, 'outlet_items_edit.html', {'edit_items': outlet_items})
+    return render(request, 'outlet_items_edit.html', {'edit_items': voucher})
 
 
-def outlet_items_delete(request, pk):
-    outlet_item = get_object_or_404(Outlet, pk=pk)
+def voucher_items_delete(request, pk):
+    # Get the voucher associated with the given primary key
+    voucher = get_object_or_404(Voucher, pk=pk)
 
     if request.method == 'POST':
-        outlet_item.delete()
-        return redirect('outlet_list')
+        voucher.delete()
+        return redirect('dealer_vouchers')
     else:
         # Typically, a GET request to this endpoint should be handled differently,
-        # but in this case, we just redirect to the outlet_list without deleting anything.
-        return redirect('outlet_list')
-
+        # but in this case, we just redirect to the dealer_vouchers without deleting anything.
+        return redirect('dealer_vouchers')

@@ -514,9 +514,9 @@
             <a href="{% url 'outlet_deatails' pk=item.pk  %}">
             <div class="card text-center py-4 mb-3 border rounded-3">
               <a href="{% url 'outlet_deatails' pk=item.pk  %}">
-                <h5 class="mt-2"><a href="{% url 'outlet_deatails' pk=item.pk %}">{{ item.item_name }}</a></h5>
-                <img class="img_spcl_food" src="{{ item.item_img.url }}" alt="{{ item.item_name }}">
-                <p>{{ item.description }}</p>
+                <h5 class="mt-2"><a href="{% url 'outlet_deatails' pk=item.pk %}">{{ item.outlet_name }}</a></h5>
+                <img class="img_spcl_food" src="{{ item.outlet_img.url }}" alt="{{ item.outlet_name }}">
+                <p>{{ item.outlet_description }}</p>
                 {% comment %} <h5>{{ item.start_time }}</h5>
                 <h5>{{ item.end_time }}</h5> {% endcomment %}
               </a>
