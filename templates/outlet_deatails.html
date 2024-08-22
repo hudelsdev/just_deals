@@ -46,34 +46,44 @@
       
       <!-- Tab content -->
       <div id="London" class="tabcontent">
+        {% for voucher in vouchers %}
         <div class="cards_deals" >
-            
+        
+
             <div class="name_deal_div" >
                 <h2 class="deal_name" > 
-                    <h1>{{ items.voucher_name }}</h1>
+                    <h1>{{ voucher.voucher_name }}</h1>
+                    <p>  {{ voucher.voucher_description }}</p>
+
 
                 </h2>
                 
             </div>
-            <div class="name_deal_div" >
-                <img class="rupee-icon" src="{% static 'src/images/rupee-indian (1).png' %}" alt="Rupee" >
-                <h3 class="proce_deal">{{ items.voucher_price }} /-</h3>
+            <div class="time_add">
+                <p> Timing From  {{ items.start_time }} </p> 
+                <p> Time End  {{ items.end_time }}</p>
+              
+    
             </div>
+            <div class="voucher_price" >
+                <img class="rupee-icon" src="{% static 'src/images/rupee-indian (1).png' %}" alt="Rupee" >
+                <h3 class="proce_deal">{{ voucher.voucher_price }} /-</h3>
+            </div>
+            <button class="add_button">ADD</button>
             
 
-            <div class="time_add">
-                <p>| timing from  {{ items.start_time }} </p> 
-                <p>| time end  {{ items.end_time }}</p>
-                <button> ADD</button>
-    
-            </div>
-    
-        </div>
+        
+           
+        </div></br>
+        {% endfor %}
       </div>
       
       <div id="Paris" class="tabcontent">
-        <h3>{{ items.voucher_name }}</h3>
-        <p>{{ items.voucher_about }}</p>
+        {% for voucher in vouchers %}
+
+        <h3>{{ voucher.voucher_name }}</h3>
+        <p>{{ voucher.voucher_about }}</p>
+        {% endfor %}
       </div>
       
       <div id="Tokyo" class="tabcontent">

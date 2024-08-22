@@ -179,11 +179,13 @@ def voucher_add(request):
 def outlet_deatails(request, pk):
     # Fetch the Outlet instance using the primary key
     outlet_datas = get_object_or_404(Dealers, pk=pk)
+    vouchers = Voucher.objects.filter(dealer=outlet_datas)
+    
     # Render the template with the context
     return render(request, 'outlet_deatails.html', {
-        'items': outlet_datas
+        'items': outlet_datas,
+        'vouchers': vouchers
     })
-
 
 
 
