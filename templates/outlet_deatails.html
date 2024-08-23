@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{% static 'src/styles/outlet_deatails.css' %}">
-    <script src="{% static 'src/scripts/outlet_deatails.js' %}"></script>
+    {% comment %} <script src="{% static 'src/scripts/outlet_deatails.js' %}"></script> {% endcomment %}
 </head>
 <body>
     
@@ -52,7 +52,7 @@
 
             <div class="name_deal_div" >
                 <h2 class="deal_name" > 
-                    <h1>{{ voucher.voucher_name }}</h1>
+                    <h2>{{ voucher.voucher_name }}</h2>
                     <p>  {{ voucher.voucher_description }}</p>
 
 
@@ -69,7 +69,7 @@
                 <img class="rupee-icon" src="{% static 'src/images/rupee-indian (1).png' %}" alt="Rupee" >
                 <h3 class="proce_deal">{{ voucher.voucher_price }} /-</h3>
             </div>
-            <button class="add_button">ADD</button>
+            <button class="add_button">PAY</button>
             
 
         
@@ -79,11 +79,12 @@
       </div>
       
       <div id="Paris" class="tabcontent">
-        {% for voucher in vouchers %}
+        
 
-        <h3>{{ voucher.voucher_name }}</h3>
-        <p>{{ voucher.voucher_about }}</p>
-        {% endfor %}
+        {% comment %} <h1>{{ items.outlet_name }}</h1> {% endcomment %}
+        <h4>Merchant Address</h4>
+        <p>{{ items.merchant_address }}</p>
+      
       </div>
       
       <div id="Tokyo" class="tabcontent">
@@ -92,6 +93,36 @@
         <img class="item_pic" src="{{ items.item_img.url }}" alt="{{ items.item_name }}" />
         {% endif %}
    </div>
-
+   <script>
+    function openCity(evt, cityName) {
+      var i, tabcontent, tablinks;
+  
+      // Hide all tab content
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+  
+      // Remove active class from all tab links
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+  
+      // Show the current tab content and add active class to the clicked tab
+      document.getElementById(cityName).style.display = "block";
+      if (evt) {
+        evt.currentTarget.className += " active";
+      }
+    }
+  
+    // Automatically open the "London" tab on page load
+    window.onload = function() {
+      var defaultTab = document.querySelector(".tablinks");
+      if (defaultTab) {
+        openCity(null, 'London');
+        defaultTab.className += " active";
+      }
+    };
+  </script>
 </section>
-

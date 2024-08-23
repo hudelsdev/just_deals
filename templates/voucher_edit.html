@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "src/styles/style.css" %}">
+</head>
+<body>
+    <section class="sec_add_fields">
+        <h1 style="text-align: center; font-size: 1.8em; color: #191970; margin-bottom: 20px;">Edit Vouchers</h1> <br />
+        <form method="post" action="{% url 'voucher_edit' pk=edit_items.pk %}" enctype="multipart/form-data" class="add_field_form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="item-name">Voucher Name:</label>
+                <input type="text" id="item-name" name="voucher_name" value="{{ edit_items.voucher_name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Voucher Description:</label>
+                <textarea id="description" name="voucher_description" rows="4" required>{{ edit_items.voucher_description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="item-price">Voucher Price:</label>
+                <input type="number" id="item-price" name="voucher_price" value="{{ edit_items.voucher_price }}" required>
+            </div>
+            <div class="form-group">
+                <label for="about">Voucher About:</label>
+                <textarea id="about" name="voucher_about" rows="4" required>{{ edit_items.voucher_about }}</textarea>
+            </div>
+            <!-- Add a hidden input to indicate the action -->
+            <input type="hidden" name="action" value="save">
+            <div class="form-group">
+                <button type="submit" name="action" value="save">Save</button>
+                <button type="submit" name="action" value="cancel" style="background-color:red;">Cancel</button>
+            </div>
+        </form>
+    </section>
+
+</body>
+</html>

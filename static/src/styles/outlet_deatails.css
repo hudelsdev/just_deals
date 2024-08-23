@@ -13,6 +13,21 @@
   padding: 0 20px;
   flex-wrap: wrap; /* Allow items to wrap on smaller screens */
 }
+h1{
+  text-transform: capitalize;
+  font-size: 27px;
+
+}
+h2{
+  text-transform: capitalize;
+  font-size: 23px;
+
+}
+p{
+  text-transform:none;
+  font-family:sans-serif;
+
+}
 
 .deals_logo {
   height: 40px;
@@ -131,6 +146,7 @@
   font-size: 1.5em;
   font-weight: bold;
   margin: 0;
+  text-transform: capitalize;
 }
 
 .time_add {

@@ -57,29 +57,33 @@ def voucher_items_edit(request, pk):
     voucher = get_object_or_404(Voucher, pk=pk)
 
     if request.method == 'POST':
-        name = request.POST.get('item-name')
-        description = request.POST.get('description')
-        price = request.POST.get('item-price')
-        # time_from = request.POST.get('time-from')
-        # time_to = request.POST.get('time-to')
-        about = request.POST.get('about')
-        # image = request.FILES.get('image')
+        action = request.POST.get('action')
 
-        # Update fields
-        voucher.voucher_name = name
-        voucher.voucher_description = description
-        voucher.voucher_price = price
-        # voucher.start_time = time_from
-        # voucher.end_time = time_to
-        voucher.voucher_about = about
-        
-        # if image:
-        #     voucher.item_img = image
-        
-        voucher.save()
-        return redirect('dealer_vouchers')
+        if action == 'save':
+            # Process save
+            name = request.POST.get('voucher_name')
+            description = request.POST.get('voucher_description')
+            price = request.POST.get('voucher_price')
+            about = request.POST.get('voucher_about')
 
-    return render(request, 'outlet_items_edit.html', {'edit_items': voucher})
+            # Update fields
+            voucher.voucher_name = name
+            voucher.voucher_description = description
+            voucher.voucher_price = price
+            voucher.voucher_about = about
+
+            # Uncomment if you use image upload
+            # image = request.FILES.get('image')
+            # if image:
+            #     voucher.item_img = image
+
+            voucher.save()
+            return redirect('dealer_vouchers')
+        elif action == 'cancel':
+            # Redirect without saving
+            return redirect('dealer_vouchers')
+
+    return render(request, 'voucher_edit.html', {'edit_items': voucher})
 
 
 def voucher_items_delete(request, pk):

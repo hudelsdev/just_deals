@@ -116,7 +116,7 @@ def dealer_login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('voucher_add')  # Redirect to the dealer vouchers page
+            return redirect('dealer_vouchers')  # Redirect to the dealer vouchers page
         else:
             return render(request, 'dealer_login.html', {'message': 'Invalid credentials'})
     else:
