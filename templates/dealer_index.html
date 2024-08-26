@@ -179,7 +179,7 @@
 		<div class="header-right">
 			<div class="btn-create">
 				<a href="{% url 'register_and_add_outlet' %}">
-				<button class="btn_crete_index"> Create  </button>
+				<button class="btn_crete_index"> REGISTER  </button>
 			</a>
 			
 			</div> 
@@ -646,7 +646,7 @@
 	<div class="main-container">
 		<div class="xs-pd-20-10 pd-ltr-20">
 			<div class="title pb-20">
-				<h2 class="h3 mb-0">DEALER INTERFACE</h2>
+				<h2 class="h3 mb-0">DEALER DASHBOARD</h2>
 			</div>
 
 			<div class="row pb-10">
@@ -688,9 +688,9 @@
 					<div class="card-box height-100-p widget-style3">
 						<div class="d-flex flex-wrap">
 							<div class="widget-data">
-								<div class="weight-700 font-24 text-dark">400+</div>
+								<div class="weight-700 font-24 text-dark">{{ dealer_count }}</div>
 								<div class="font-14 text-secondary weight-500">
-									Total Doctor
+									No Of Dealers
 								</div>
 							</div>
 							<div class="widget-icon">
@@ -1007,7 +1007,7 @@
 							<th>Phone Number</th>
 							<th>Email</th>
 							<th>Username</th>
-							<th class="datatable-nosort">Actions</th>
+							{% comment %} <th class="datatable-nosort">Actions</th> {% endcomment %}
 						</tr>
 					</thead>
 					<tbody>
@@ -1031,12 +1031,12 @@
 							<td>{{ dealerdata.phone }}</td>
 							<td>{{ dealerdata.user.email }}</td>
 							<td>{{ dealerdata.user.username }}</td>
-							<td>
+							{% comment %} <td>
 								<div class="table-actions">
 									<a href="#" data-color="#265ed7"><i class="icon-copy dw dw-edit2"></i></a>
 									<a href="#" data-color="#e95959"><i class="icon-copy dw dw-delete-3"></i></a>
 								</div>
-							</td>
+							</td> {% endcomment %}
 						</tr>
 						{% endfor %}
 					</tbody>

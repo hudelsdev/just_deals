@@ -11,7 +11,10 @@ from django.contrib.auth.decorators import login_required
 @super_login_required
 def admin_index(request):
     userdatas = register_user.objects.all()
-    return render(request, 'admin_index.html', {'userdatas': userdatas})
+    users_count = userdatas.count()  # Get the number of dealers
+    return render(request, 'admin_index.html', {'userdatas': userdatas, 'users_count': users_count})
+    
+ 
     
 
 # views for registration /////////////
@@ -93,7 +96,7 @@ def forgot_password(request):
 
 def admin_logout(request):
     logout(request)
-    return redirect("admin_login")
+    return redirect("index_main")
 
 
 def about_page(request):

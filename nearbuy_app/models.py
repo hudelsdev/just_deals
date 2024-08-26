@@ -3,6 +3,7 @@ from accounts_app.models import*
 
 
 
+
 # Create your models here.
 
 class register_user(models.Model):

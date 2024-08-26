@@ -174,19 +174,32 @@
             <div class="offcanvas-body">
               <ul id="navbar" class="navbar-nav text-uppercase justify-content-start justify-content-lg-center align-items-start align-items-lg-center flex-grow-1">
                 <li class="nav-item">
-                  <a class="nav-link me-4 active" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link me-4" href="about.html">About</a>
-                </li>
-                <li class="nav-item">
+                  <a class="nav-link me-4 active" href="{% url 'admin_index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link me-4" href="{% url 'about_page' %}">About</a>
+              </li>
+              <li class="nav-item">
                   <a class="nav-link me-4" href="offer.html">Offer</a>
-                </li>
-                <li class="nav-item">
+              </li>
+              <li class="nav-item">
                   <a class="nav-link me-4" href="contact.html">Contact</a>
-                </li>
-               
-                <li class="nav-item dropdown">
+              </li>
+              
+              {% if user.is_authenticated %}
+                  <li class="nav-item">
+                      <a href="{% url 'admin_logout' %}" class="nav-link me-4">Logout</a>
+                  </li>
+              {% else %}
+                  <li class="nav-item">
+                      <a href="{% url 'admin_register' %}" class="nav-link me-4">Register</a>
+                  </li>
+                  <li class="nav-item">
+                      <a href="{% url 'admin_login' %}" class="nav-link me-4">Login</a>
+                  </li>
+                 
+              {% endif %}
+                {% comment %} <li class="nav-item dropdown">
                   <a class="nav-link me-4 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Register</a>
                   <ul class="dropdown-menu animate slide border">
                     <li>
@@ -201,7 +214,7 @@
                    
                    
                   </ul>
-                </li>
+                </li> {% endcomment %}
                
                 <!-- <li class="nav-item">
                   <a class="nav-link me-4" href="signup.html">Signup</a>

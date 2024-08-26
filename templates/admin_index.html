@@ -697,7 +697,7 @@
 		<div class="main-container">
 			<div class="xs-pd-20-10 pd-ltr-20">
 				<div class="title pb-20">
-					<h2 class="h3 mb-0">ADMIN INTERFACE</h2>
+					<h2 class="h3 mb-0">USER DASHBOARD</h2>
 				</div>
 
 				<div class="row pb-10">
@@ -739,9 +739,9 @@
 						<div class="card-box height-100-p widget-style3">
 							<div class="d-flex flex-wrap">
 								<div class="widget-data">
-									<div class="weight-700 font-24 text-dark">400+</div>
+									<div class="weight-700 font-24 text-dark">{{ users_count }}</div>
 									<div class="font-14 text-secondary weight-500">
-										Total Doctor
+										Total Registerd Users
 									</div>
 								</div>
 								<div class="widget-icon">
@@ -1057,7 +1057,7 @@
 								<th>phone Number</th>
 								<th>Email</th>
 								<th>Username</th>
-								<th class="datatable-nosort">Actions</th>
+								{% comment %} <th class="datatable-nosort">Actions</th> {% endcomment %}
 							</tr>
 						</thead>
 						<tbody>
@@ -1090,7 +1090,7 @@
 								<td>{{ userdata.user.email }}</td>
 								<td>{{ userdata.user.username }}</td>
 								
-								<td>
+								{% comment %} <td>
 									<div class="table-actions">
 										<a href="#" data-color="#265ed7"
 											><i class="icon-copy dw dw-edit2"></i
@@ -1099,7 +1099,7 @@
 											><i class="icon-copy dw dw-delete-3"></i
 										></a>
 									</div>
-								</td>
+								</td> {% endcomment %}
 							</tr>
 							
 							{% endfor %}

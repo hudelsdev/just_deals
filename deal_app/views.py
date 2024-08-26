@@ -15,7 +15,8 @@ from django.contrib.auth import authenticate,login as auth_login,logout,login
 @super_login_required
 def dealer_index(request):
     dealerdatas = Dealers.objects.all()
-    return render(request, 'dealer_index.html', {'dealerdatas': dealerdatas})
+    dealer_count = dealerdatas.count()  # Get the number of dealers
+    return render(request, 'dealer_index.html', {'dealerdatas': dealerdatas, 'dealer_count': dealer_count})
     
 
 def unauthorized(request):
@@ -23,6 +24,7 @@ def unauthorized(request):
 
 # views for registration /////////////
 ##############################here we need to cahange like jobportal company register#######
+@super_login_required
 def register_and_add_outlet(request):
     if request.method == 'POST':
         if 'submit' in request.POST:
@@ -142,7 +144,7 @@ def index_main(request):
     return render(request, 'index_main.html',{'items':items} )
 
 
-
+@super_login_required
 def voucher_add(request):
     if request.method == 'POST':
         voucher_name = request.POST.get('item-name')
