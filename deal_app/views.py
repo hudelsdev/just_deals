@@ -190,11 +190,28 @@ def outlet_deatails(request, pk):
     })
 
 
+def outlet_category(request, category=None):
+    # Get all merchant types for the dropdown
+    merchant_types = dict(Dealers.drop_merchant_type)
+    selected_type = request.GET.get('type', category)
+
+    # Filter dealers based on the selected type
+    if selected_type and selected_type in merchant_types:
+        outlets = Dealers.objects.filter(merchant_type=selected_type)
+    else:
+        outlets = Dealers.objects.all()
+
+    return render(request, 'outlet_catogory.html', {
+        'items': outlets,
+        'merchant_types': merchant_types,
+        'selected_type': selected_type,
+        'current_category': merchant_types.get(selected_type, 'All Categories')  # Default to 'All Categories' if none is selected
+    })
 
 
-
-
-
+def index_new(request):
+    return render(request,'index.html')
+    
  
 
 ## functions for outlet_adding

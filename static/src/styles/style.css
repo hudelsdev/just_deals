@@ -4283,3 +4283,13 @@ body.IE .register-page-wrap .container{
   }
   
  
+  /* ################################################## */
+  /* outlet category page  */
+  /* Custom styles for category dropdown */
+.nav-item .form-select {
+    border: 1px solid #dee2e6; /* Match border with nav links */
+    border-radius: 0.25rem;    /* Match border-radius with nav links */
+    padding: 0.375rem 0.75rem; /* Match padding with nav links */
+    font-size: 0.875rem;        /* Match font size with nav links */
+    height: 38px;               /* Ensure consistent height */
+}
