@@ -210,7 +210,14 @@ p {
     color: #7a7a7a;
     line-height: 1.75;
 }
-
+.outlet_description{
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-family: "Poppins, sans-serif";
+    color: #7a7a7a;
+    line-height: 1.75;
+    text-transform:lowercase;
+}
 .cr-banner {
     margin-bottom: 15px;
     text-align: center;
@@ -5524,19 +5531,21 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 }
 
 .cr-product-card .cr-product-image {
+    object-fit: cover;
     border-radius: 5px;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
     position: relative;
+     /* Adjust this height as needed */
+    overflow: hidden; /* Ensures images are clipped to the container */
 }
+.outlet_imgs{
+    object-fit: cover;
+    width:100%;
+    height: 250px;
 
+}
 .cr-product-card .cr-product-image .cr-side-view {
     -webkit-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;

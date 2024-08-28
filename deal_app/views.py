@@ -205,48 +205,23 @@ def outlet_category(request, category=None):
         'items': outlets,
         'merchant_types': merchant_types,
         'selected_type': selected_type,
-        'current_category': merchant_types.get(selected_type, 'All Categories')  # Default to 'All Categories' if none is selected
+        'current_category': merchant_types.get(selected_type, 'All Catogories')  # Default to 'All Categories' if none is selected
     })
 
 
-def index_new(request):
-    return render(request,'index.html')
-    
+
+
  
 
-## functions for outlet_adding
-
-# def outlet_fields_add(request):
+#############for new index##################
+def index(request):
+    items = Dealers.objects.all()
+    merchant_types = Dealers.objects.values_list('merchant_type', flat=True).distinct()
     
-#     if request.method == 'POST':
-#         # Extract data from the request
-#         item_name = request.POST.get('item-name')
-#         description = request.POST.get('description')
-#         item_price = request.POST.get('item-price')
-#         about = request.POST.get('about')
-#         start_time_str = request.POST.get('time-from')
-#         end_time_str = request.POST.get('time-to')
-#         item_img = request.FILES.get('image')
+    context = {
+        'items': items,
+        'merchant_types': merchant_types
+    }
+    
+    return render(request, 'index.html', context)
 
-#         # Basic validation (optional)
-#         if not item_name or not description or not item_price or not about or not start_time_str or not end_time_str:
-#             return render(request, 'outlet_add.html', {'message': 'Please fill in all required fields'})
-
-#         # Try converting time strings to time objects
-#         try:
-#             start_time = datetime.strptime(start_time_str, '%H:%M').time()  # Parse time in HH:MM format
-#             end_time = datetime.strptime(end_time_str, '%H:%M').time()
-#         except ValueError:
-#             # Handle invalid time format
-#             return render(request, 'outlet_add.html', {'message': 'Invalid time format. Use HH:MM format.'})
-
-#         # Create a new model object
-#         try:
-#             new_field = OutletFields.objects.create(
-#                 item_name=item_name, description=description,item_price=item_price,about=about, start_time=start_time, end_time=end_time, item_img=item_img)
-#             return redirect('index_main')  # Redirect to index_main after successful creation
-#         except Exception as e:  # Handle potential exceptions
-#             return render(request, 'outlet_add.html', {'message': f'Error adding item: {str(e)}'})
-
-#     else:
-#         return render(request, 'outlet_add.html')
