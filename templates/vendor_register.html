@@ -1,0 +1,90 @@
+
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vendor Registration</title>
+    
+    <link rel="stylesheet" href="{% static 'src/styles/style.css' %}">
+    
+  </head>
+  <body>
+
+    
+	<section class="reg_main"  >
+
+	
+		<form class="form" action="{% url 'vendor_register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <p class="title">Vendor Registration</p>
+            
+            {{ form.non_field_errors }}
+            
+            <label>
+                <input class="input" type="text" placeholder="" required name="fname">
+                <span>Vendor name</span>
+            </label>
+            
+            <label for="vendor_type">Vendor Type</label>
+            <select class="input" name="vendor_type" id="vendor_type" required>
+                {% for choice in choices %}
+                <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                {% endfor %}
+            </select>
+            
+            <label>
+                <input class="input" type="text" placeholder="" required name="point_of_contact">
+                <span>Point of contact</span>
+            </label>
+            
+            <label>
+                <input class="input" type="text" placeholder="" required name="phone">
+                <span>Phone</span>
+            </label>
+            
+            <div class="form-group">
+                <label for="image">Vendor logo:</label>
+                <input type="file" id="image" name="image" accept="image/*" required>
+                <span class="file-label">Accepted formats: JPG, JPEG, PNG</span>
+            </div>
+            
+            <label>
+                <input class="input" type="text" placeholder="" required name="terms">
+                <span>Vendor terms and conditions</span>
+            </label>
+            
+            <label>
+                <input class="input" type="text" placeholder="Username" required name="uname">
+            </label>
+            
+            <label>
+                <input class="input" type="password" id="pass" placeholder="Password" required name="password">
+            </label>
+            
+            <label>
+                <input class="input" type="password" id="confirm_pass" placeholder="Confirm Password" required name="cpassword">
+            </label>
+            
+            <!-- Display the unique ID -->
+            <p><strong>Unique ID:</strong> {{ temp_unique_id }}</p>
+            
+            <input class="submit" type="submit" value="Submit">
+        </form>
+        
+        
+        
+      
+	</section>
+	
+  </body>
+</html>
+
+
+
+
+   
+    

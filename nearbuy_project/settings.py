@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'vendor_app',
     'admin_backend',
     'nearbuy_app',
     'deal_app',

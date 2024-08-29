@@ -69,7 +69,10 @@
                 <img class="rupee-icon" src="{% static 'src/images/rupee-indian (1).png' %}" alt="Rupee" >
                 <h3 class="proce_deal">{{ voucher.voucher_price }} /-</h3>
             </div>
-            <button class="add_button">PAY</button>
+            <a href="{{voucher.voucher_price}}">
+              <button class="add_button">BUY</button>
+            </a>
+            {% comment %} <button class="add_button">PAY</button> {% endcomment %}
             
 
         
