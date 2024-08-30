@@ -37,12 +37,12 @@
             </select>
             
             <label>
-                <input class="input" type="text" placeholder="" required name="point_of_contact">
+                <input class="input" type="number" placeholder="" required name="point_of_contact">
                 <span>Point of contact</span>
             </label>
             
             <label>
-                <input class="input" type="text" placeholder="" required name="phone">
+                <input class="input" type="number" placeholder="" required name="phone">
                 <span>Phone</span>
             </label>
             
@@ -51,6 +51,37 @@
                 <input type="file" id="image" name="image" accept="image/*" required>
                 <span class="file-label">Accepted formats: JPG, JPEG, PNG</span>
             </div>
+            
+            <!-- New field for commission percentage -->
+            <label>
+                <input class="input" type="number" step="0.01" placeholder="Commission Percentage" required name="commission_percentage">
+                <span>Commission Percentage</span>
+            </label>
+        
+            <label>
+                <input class="input" type="text" placeholder="Account Holder Name" required name="account_holder_name">
+                <span>Account Holder Name</span>
+            </label>
+        
+            <label>
+                <input class="input" type="text" placeholder="Bank Name" required name="bank_name">
+                <span>Bank Name</span>
+            </label>
+        
+            <label>
+                <input class="input" type="text" placeholder="Branch" required name="branch">
+                <span>Branch</span>
+            </label>
+        
+            <label>
+                <input class="input" type="text" placeholder="Account Number" required name="account_number">
+                <span>Account Number</span>
+            </label>
+        
+            <label>
+                <input class="input" type="text" placeholder="IFSC Code" required name="ifsc_code">
+                <span>IFSC Code</span>
+            </label>
             
             <label>
                 <input class="input" type="text" placeholder="" required name="terms">

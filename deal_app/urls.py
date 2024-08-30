@@ -13,6 +13,8 @@ urlpatterns =[
    path('unauthorized',unauthorized,name='unauthorized'),
    path('dealer_logout',dealer_logout,name='dealer_logout'),
    path('outlet_category', outlet_category, name='outlet_category'),
+   path('update-voucher-date/', update_voucher_date, name='update_voucher_date'),
+
 
 
 ]

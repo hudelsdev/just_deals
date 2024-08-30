@@ -28,6 +28,10 @@
                 <label for="about">Voucher About:</label>
                 <textarea id="about" name="voucher_about" rows="4" required>{{ edit_items.voucher_about }}</textarea>
             </div>
+            <div class="form-group">
+                <label for="button_link">Voucher Button Link:</label>
+                <input type="url" id="button_link" name="button_link" value="{{ edit_items.button_link }}" required>
+            </div>
             <!-- Add a hidden input to indicate the action -->
             <input type="hidden" name="action" value="save">
             <div class="form-group">

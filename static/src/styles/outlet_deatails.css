@@ -270,3 +270,18 @@ p{
     height: auto; /* Maintain aspect ratio */
   }
 }
+
+.date_picker {
+  margin-bottom: 10px; /* Adjust as needed */
+}
+
+.date_picker label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.date_picker input {
+  width: 100%; /* Adjust as needed */
+  padding: 5px;
+  box-sizing: border-box;
+}

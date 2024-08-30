@@ -38,16 +38,18 @@ def register_and_add_outlet(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             cpassword = request.POST.get('cpassword')
+            business_owner_name = request.POST.get('business_owner_name')
+            contact_person = request.POST.get('contact_person')
 
             if User.objects.filter(username=user_name).exists():
                 return render(request, 'register_and_add_outlet.html', {
-                    'message': 'Username already exists', 
+                    'message': 'Username already exists',
                     'choices': Dealers.drop_merchant_type
                 })
 
             if password != cpassword:
                 return render(request, 'register_and_add_outlet.html', {
-                    'message': 'Passwords do not match', 
+                    'message': 'Passwords do not match',
                     'choices': Dealers.drop_merchant_type
                 })
 
@@ -64,7 +66,9 @@ def register_and_add_outlet(request):
                 merchant_type=merchant_type,
                 city=city,
                 merchant_name=merchant_name,
-                merchant_address=merchant_address
+                merchant_address=merchant_address,
+                business_owner_name=business_owner_name,
+                contact_person=contact_person
             )
             newdealer.save()
 
@@ -80,7 +84,7 @@ def register_and_add_outlet(request):
             # Basic validation
             if not outlet_name or not outlet_description or not start_time_str or not end_time_str:
                 return render(request, 'register_and_add_outlet.html', {
-                    'message': 'Please fill in all required fields', 
+                    'message': 'Please fill in all required fields',
                     'choices': Dealers.drop_merchant_type
                 })
 
@@ -89,7 +93,7 @@ def register_and_add_outlet(request):
                 end_time = datetime.strptime(end_time_str, '%H:%M').time()
             except ValueError:
                 return render(request, 'register_and_add_outlet.html', {
-                    'message': 'Invalid time format. Use HH:MM format.', 
+                    'message': 'Invalid time format. Use HH:MM format.',
                     'choices': Dealers.drop_merchant_type
                 })
 
@@ -105,7 +109,7 @@ def register_and_add_outlet(request):
 
     # For GET request, render the form with choices
     choices = Dealers.drop_merchant_type
-    return render(request, 'register_and_add_outlet.html', {'choices': choices})                 
+    return render(request, 'register_and_add_outlet.html', {'choices': choices})             
                       
             
 # views for login page///////
@@ -144,7 +148,7 @@ def index_main(request):
     return render(request, 'index_main.html',{'items':items} )
 
 
-@super_login_required
+# @super_login_required
 def voucher_add(request):
     if request.method == 'POST':
         voucher_name = request.POST.get('item-name')
@@ -225,3 +229,24 @@ def index(request):
     
     return render(request, 'index.html', context)
 
+
+# def update_voucher_date(request):
+#     if request.method == 'POST':
+#         # Retrieve the voucher ID and date from the POST request
+#         voucher_id = request.POST.get('voucher_id')
+#         voucher_date = request.POST.get('voucher_date')
+
+#         # Find the voucher instance by ID
+#         try:
+#             voucher = Voucher.objects.get(id=voucher_id)
+#         except Voucher.DoesNotExist:
+#             return HttpResponse("Voucher not found", status=404)
+
+#         # Update the voucher date
+#         if voucher_date:
+#             voucher.voucher_date = voucher_date
+#             voucher.save()
+#             return redirect('outlet_deatails')  # Replace with the URL to redirect after success
+
+#     # If the request method is not POST or if the date was not provided, return an error or redirect
+#     return HttpResponse("Invalid request", status=400)

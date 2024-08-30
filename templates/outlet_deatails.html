@@ -47,39 +47,41 @@
       <!-- Tab content -->
       <div id="London" class="tabcontent">
         {% for voucher in vouchers %}
-        <div class="cards_deals" >
-        
-
-            <div class="name_deal_div" >
-                <h2 class="deal_name" > 
+        <div class="cards_deals">
+    
+            <div class="name_deal_div">
+                <h2 class="deal_name">
                     <h2>{{ voucher.voucher_name }}</h2>
-                    <p>  {{ voucher.voucher_description }}</p>
-
-
+                    <p>{{ voucher.voucher_description }}</p>
                 </h2>
-                
             </div>
             <div class="time_add">
-                <p> Timing From  {{ items.start_time }} </p> 
-                <p> Time End  {{ items.end_time }}</p>
-              
-    
+                <p>Timing From {{ items.start_time }}</p>
+                <p>Time End {{ items.end_time }}</p>
             </div>
-            <div class="voucher_price" >
-                <img class="rupee-icon" src="{% static 'src/images/rupee-indian (1).png' %}" alt="Rupee" >
+             
+             <!-- Date picker added here -->
+            <form method="post" action="{% url 'update_voucher_date' %}">
+              {% csrf_token %}
+              <div class="date_picker">
+                  <label for="voucher-date-{{ forloop.counter }}">Select Date:</label>
+                  <input type="hidden" name="voucher_id" value="{{ voucher.id }}">  <!-- Hidden input for voucher ID -->
+                  <input type="date" id="voucher-date-{{ forloop.counter }}" name="voucher_date" class="date-picker-input">
+                  <button type="submit" class="confirm-button">Confirm</button>
+              </div>
+            </form>
+            <div class="voucher_price">
+                <img class="rupee-icon" src="{% static 'src/images/rupee-indian (1).png' %}" alt="Rupee">
                 <h3 class="proce_deal">{{ voucher.voucher_price }} /-</h3>
             </div>
-            <a href="{{voucher.voucher_price}}">
-              <button class="add_button">BUY</button>
+            <a href="{{ voucher.button_link }}">
+                <button class="add_button">BUY</button>
             </a>
-            {% comment %} <button class="add_button">PAY</button> {% endcomment %}
             
-
-        
-           
         </div></br>
         {% endfor %}
       </div>
+    
       
       <div id="Paris" class="tabcontent">
         
@@ -127,5 +129,25 @@
         defaultTab.className += " active";
       }
     };
+
+      // Ensure date inputs only allow dates from today onwards
+      document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.querySelectorAll('.date-picker-input').forEach(input => {
+            input.setAttribute('min', today);
+        });
+    });
+
+    // Function to handle date confirmation
+    function confirmDate(dateInputId) {
+        const dateInput = document.querySelector(`#${dateInputId}`);
+        const selectedDate = dateInput.value;
+        if (selectedDate) {
+            alert(`Selected date: ${selectedDate}`);
+        } else {
+            alert('Please select a date.');
+        }
+    }
+
   </script>
 </section>

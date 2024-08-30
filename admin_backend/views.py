@@ -53,34 +53,28 @@ def dealer_vouchers(request):
 
 
 def voucher_items_edit(request, pk):
-    # Get the voucher associated with the given primary key
     voucher = get_object_or_404(Voucher, pk=pk)
 
     if request.method == 'POST':
         action = request.POST.get('action')
 
         if action == 'save':
-            # Process save
             name = request.POST.get('voucher_name')
             description = request.POST.get('voucher_description')
             price = request.POST.get('voucher_price')
             about = request.POST.get('voucher_about')
+            button_link = request.POST.get('button_link')
 
             # Update fields
             voucher.voucher_name = name
             voucher.voucher_description = description
             voucher.voucher_price = price
             voucher.voucher_about = about
-
-            # Uncomment if you use image upload
-            # image = request.FILES.get('image')
-            # if image:
-            #     voucher.item_img = image
+            voucher.button_link = button_link
 
             voucher.save()
             return redirect('dealer_vouchers')
         elif action == 'cancel':
-            # Redirect without saving
             return redirect('dealer_vouchers')
 
     return render(request, 'voucher_edit.html', {'edit_items': voucher})

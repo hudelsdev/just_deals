@@ -141,14 +141,29 @@ img{
 .app-search button[type="submit"]:hover {
     background-color: #0056b3;
 }
+
+#logout_dealer_btn{
+    position: relative;
+    display: flex;
+    left: 75%;
+    bottom: 59px;
+    background-color:red;
+    color: #fff;
+}
     </style>
 </head>
 <body>
      <div class="category_search">
-    <form method="GET" action="{% url 'dealer_vouchers' %}" class="app-search">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+        <form method="POST" action="{% url 'dealer_logout' %}" class="app-search">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        
+        <form  method="POST" action="{% url 'dealer_logout' %}" class="d-inline">
+            {% csrf_token %}
+            <button id ="logout_dealer_btn" class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
     </div>
 
     <div class="page-wrapper">
@@ -176,6 +191,7 @@ img{
                                             {% comment %} <th>Time_From</th>
                                             <th>Time_To</th> {% endcomment %}
                                             <th>About</th>
+                                            <th>Button Link</th>  <!-- Updated column header -->
                                             {% comment %} <th>Image</th> {% endcomment %}
                                             <th>Actions</th>
                                         </tr>
@@ -185,11 +201,12 @@ img{
                                             <tr>
                                                 <th scope="row">{{ forloop.counter }}</th>
                                                 <td>{{ item.voucher_name }}</td>
-                                                <td>{{item.voucher_description}}</td>
+                                                <td>{{ item.voucher_description }}</td>
                                                 <td>{{ item.voucher_price }}</td>
                                                 {% comment %} <td>{{ item.start_time }}</td>
                                                 <td>{{ item.end_time }}</td> {% endcomment %}
                                                 <td>{{ item.voucher_about }}</td>
+                                                <td><a href="{{ item.button_link }}" target="_blank">{{ item.button_link }}</a></td> <!-- Display button link -->
                                                 {% comment %} <td>
                                                 {% if item.item_img %}
                                                 <img src="{{ item.item_img.url }}" alt="{{ item.item_name }}" />
@@ -201,8 +218,6 @@ img{
                                                         {% csrf_token %}
                                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                                     </form>
-                                                     
-                                                    
                                                 </td>
                                             </tr>
                                         {% endfor %}
@@ -244,5 +259,3 @@ img{
     </script>
 </body>
 </html>
-
-
