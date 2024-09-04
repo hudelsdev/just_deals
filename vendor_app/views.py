@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib import messages
 from .models import Vendor
+from django.shortcuts import render, get_object_or_404
 import uuid
 
 def vendor_register(request):
@@ -36,13 +37,12 @@ def vendor_register(request):
 
         # Validate commission percentage
         try:
-            # Check if commission_percentage is not None or empty
             if commission_percentage:
                 commission_percentage = float(commission_percentage)
                 if commission_percentage < 0 or commission_percentage > 100:
                     raise ValueError("Commission percentage must be between 0 and 100.")
             else:
-                commission_percentage = 0.00  # Set a default value or handle as needed
+                commission_percentage = 0.00
         except ValueError as e:
             messages.error(request, str(e))
             return render(request, 'vendor_register.html', {
@@ -66,33 +66,74 @@ def vendor_register(request):
             phone=phone,
             terms=terms,
             image=image,
-            uname=uname,
-            password=password,  # Note: Consider using Django's built-in User model for authentication
-            cpassword=cpassword,  # This should be used only for validation; consider not storing it.
-            account_holder_name=account_holder_name,
-            bank_name=bank_name,
-            branch=branch,
-            account_number=account_number,
-            ifsc_code=ifsc_code,
-            commission_percentage=commission_percentage
+            uname=uname
         )
+        vendor.set_password(password)
+        vendor.account_holder_name = account_holder_name
+        vendor.bank_name = bank_name
+        vendor.branch = branch
+        vendor.account_number = account_number
+        vendor.ifsc_code = ifsc_code
+        vendor.commission_percentage = commission_percentage
 
         # Save the vendor to the database
         vendor.save()
 
         # Capture the unique ID
-        unique_id = vendor.pk  # Assuming `pk` is the unique identifier for the Vendor instance
+        unique_id = vendor.pk
 
         # Pass the unique ID to the success page
         messages.success(request, f"Vendor registered successfully. Your unique ID is {unique_id}.")
-        return render(request, 'index.html', {'unique_id': unique_id})
+        return redirect('vendor_login')  # Redirect to login page
 
     else:
-        # Generate a temporary unique ID for the registration form
         temp_unique_id = uuid.uuid4().hex[:8].upper()
 
-    # Render the form page with the temporary unique ID and vendor type choices
     return render(request, 'vendor_register.html', {
         'temp_unique_id': temp_unique_id,
         'choices': Vendor.VENDOR_TYPE_CHOICES
     })
+
+def admin_vendors(request):
+    # Fetch all vendors from the database
+    vendors = Vendor.objects.all()
+    
+    return render(request, 'admin_vendors.html', {
+        'vendors': vendors,
+    })
+
+def vendor_dashboard(request):
+    # Fetch all vendors from the database
+    vendors = Vendor.objects.all()
+    
+    return render(request, 'vendor_dashboard.html', {
+        'vendors': vendors,
+    })
+
+
+def vendor_login(request):
+    if request.method == 'POST':
+        uname = request.POST.get('username')
+        password = request.POST.get('password')
+
+        try:
+            vendor = Vendor.objects.get(uname=uname)
+            if vendor.check_password(password):
+                # Login successful, redirect to a dashboard or home page
+                messages.success(request, "Login successful!")
+                return redirect('index')  # Adjust this to the appropriate view or URL name
+            else:
+                messages.error(request, "Invalid username or password.")
+        except Vendor.DoesNotExist:
+            messages.error(request, "Invalid username or password.")
+
+    return render(request, 'vendor_login.html')
+
+
+def vendor_detail(request, id):
+    vendor = get_object_or_404(Vendor, id=id)
+    return render(request, 'vendor_dashboard.html', {'vendor': vendor})
+
+def admin_detail(request, id):
+    vendor = get_object_or_404(Vendor, id=id)
+    return render(request, 'admin_vendors.html', {'vendor': vendor})

@@ -1,7 +1,13 @@
 from django.shortcuts import render,redirect
+from django.http import HttpResponseBadRequest
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.urls import reverse
+from .models import VoucherCoupon
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.exceptions import ValidationError
 from deal_app.models import*
+from nearbuy_app.models import*
 # from datetime import time
 from .models import Dealers
 from datetime import datetime
@@ -10,6 +16,7 @@ from django.contrib import messages
 from admin_backend.decorators import super_login_required
 from django.shortcuts import render, redirect
 # from django.core.mail import send_mail
+import re
 from django.contrib.auth import authenticate,login as auth_login,logout,login
 # Create your views here.
 @super_login_required
@@ -21,6 +28,28 @@ def dealer_index(request):
 
 def unauthorized(request):
     return render(request, 'unauthorized.html')
+
+def main_login(request):
+    if request.method == 'POST':
+        # Retrieve form data
+        name_user = request.POST.get('name')
+        user_phone_number = request.POST.get('phone_number')
+        
+        # Validate the phone number
+        if not re.match(r'^\d{10}$', user_phone_number):
+            messages.error(request, 'Invalid phone number. It must be a 10-digit number.')
+            return render(request, 'main_login.html')
+        
+        # Save the user data to the database
+        Users.objects.create(name_user=name_user, user_phone_number=user_phone_number)
+        
+        # Redirect to the index page
+        return redirect('index')
+    
+    return render(request, 'main_login.html')
+    
+
+
 
 # views for registration /////////////
 ##############################here we need to cahange like jobportal company register#######
@@ -105,7 +134,7 @@ def register_and_add_outlet(request):
             dealer.outlet_img = outlet_img
             dealer.save()
 
-            return redirect('index_main')  # Redirect after registration and outlet addition
+            return redirect('index')  # Redirect after registration and outlet addition
 
     # For GET request, render the form with choices
     choices = Dealers.drop_merchant_type
@@ -151,6 +180,13 @@ def index_main(request):
 # @super_login_required
 def voucher_add(request):
     if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'cancel':
+            # Redirect to a different page or perform a cancel action
+            return redirect('dealer_vouchers')  # Or any other URL you'd like
+
+        # Handle the form submission if not cancel
         voucher_name = request.POST.get('item-name')
         voucher_price = request.POST.get('item-price')
         voucher_description = request.POST.get('description')
@@ -186,11 +222,15 @@ def outlet_deatails(request, pk):
     # Fetch the Outlet instance using the primary key
     outlet_datas = get_object_or_404(Dealers, pk=pk)
     vouchers = Voucher.objects.filter(dealer=outlet_datas)
-    
+    coupons = VoucherCoupon.objects.all()
+
     # Render the template with the context
     return render(request, 'outlet_deatails.html', {
         'items': outlet_datas,
-        'vouchers': vouchers
+        'vouchers': vouchers,
+        'coupons': coupons
+        
+        
     })
 
 
@@ -230,23 +270,74 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-# def update_voucher_date(request):
-#     if request.method == 'POST':
-#         # Retrieve the voucher ID and date from the POST request
-#         voucher_id = request.POST.get('voucher_id')
-#         voucher_date = request.POST.get('voucher_date')
+def add_voucher_coupon(request):
+    if request.method == 'POST':
+        coupon_name = request.POST.get('coupon_name')
+        coupon_description = request.POST.get('coupon_description', '')
+        coupon_price = request.POST.get('coupon_price')
+        coupon_button_link = request.POST.get('coupon_button_link', '')
 
-#         # Find the voucher instance by ID
-#         try:
-#             voucher = Voucher.objects.get(id=voucher_id)
-#         except Voucher.DoesNotExist:
-#             return HttpResponse("Voucher not found", status=404)
+        if coupon_name and coupon_price:
+            try:
+                coupon_price = float(coupon_price)
+            except ValueError:
+                return HttpResponse("Invalid price format", status=400)
+            
+            # Create and save the new VoucherCoupon instance
+            voucher_coupon = VoucherCoupon(
+                coupon_name=coupon_name,
+                coupon_description=coupon_description,
+                coupon_price=coupon_price,
+                coupon_button_link=coupon_button_link
+            )
+            voucher_coupon.save()
+            return redirect('index')  # Redirect to a success page or wherever you want
+        else:
+            return HttpResponse("Missing required fields", status=400)
 
-#         # Update the voucher date
-#         if voucher_date:
-#             voucher.voucher_date = voucher_date
-#             voucher.save()
-#             return redirect('outlet_deatails')  # Replace with the URL to redirect after success
+    return render(request, 'add_voucher_coupon.html')
 
-#     # If the request method is not POST or if the date was not provided, return an error or redirect
-#     return HttpResponse("Invalid request", status=400)
+
+
+# crud for voucher coupons /////////////////
+
+def coupon_list(request):
+    coupons_list = VoucherCoupon.objects.all()
+    paginator = Paginator(coupons_list, 10)  # Show 10 coupons per page
+    page = request.GET.get('page')
+    
+    try:
+        coupons = paginator.page(page)
+    except PageNotAnInteger:
+        coupons = paginator.page(1)
+    except EmptyPage:
+        coupons = paginator.page(paginator.num_pages)
+
+    return render(request, 'coupons_list.html', {'coupons': coupons})
+
+
+def edit_voucher_coupon(request, pk):
+    voucher = get_object_or_404(VoucherCoupon, pk=pk)
+    
+    if request.method == 'POST':
+        voucher.coupon_name = request.POST.get('coupon_name')
+        voucher.coupon_description = request.POST.get('coupon_description')
+        voucher.coupon_price = request.POST.get('coupon_price')
+        voucher.coupon_button_link = request.POST.get('coupon_button_link')
+        voucher.save()
+        return redirect('coupon_list')  # Redirect to the list view
+
+    return render(request, 'edit_coupons.html', {'voucher': voucher})
+
+def delete_voucher_coupon(request, pk):
+    # Get the voucher associated with the given primary key
+    voucher = get_object_or_404(VoucherCoupon, pk=pk)
+
+    if request.method == 'POST':
+        # Delete the voucher if the request method is POST
+        voucher.delete()
+        return redirect('coupon_list')  # Redirect to the list view after deletion
+
+    # For GET requests, just redirect to the voucher list without deleting anything
+    return redirect('coupon_list')
+
