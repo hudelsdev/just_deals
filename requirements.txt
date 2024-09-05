@@ -21,7 +21,7 @@ marshmallow==3.21.3
 marshmallow-enum==1.5.1
 mypy-extensions==1.0.0
 packaging==24.1
-phonepe-sdk==1.1.0
+# phonepe-sdk==1.1.0
 Pillow==9.4.0
 platformdirs==2.6.2
 psycopg2-binary==2.9.9
