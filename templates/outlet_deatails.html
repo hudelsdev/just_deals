@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>JustDeals</title>
     <link rel="stylesheet" href="{% static 'src/styles/outlet_deatails.css' %}">
     {% comment %} <script src="{% static 'src/scripts/outlet_deatails.js' %}"></script> {% endcomment %}
 </head>
@@ -24,8 +24,8 @@
     <div class="deail_deal_div_main" >
         <div class="deail_deal_div" >
             <div class="property_div" >
-                <p> casual dinning </p>
-                <h1>{{ items.outlet_name }}</h1>
+                <!-- <p> casual dinning </p> -->
+                <h1 class="dsply_name">{{ items.outlet_name }}</h1>
                 <p class="item_description" >{{ items.outlet_description }}</p>
 
             </div>
@@ -50,8 +50,8 @@
         <div class="cards_deals">
             <div class="name_deal_div">
                 <h2 class="deal_name">
-                    <h2>{{ voucher.voucher_name }}</h2>
-                    <p>{{ voucher.voucher_description }}</p>
+                    <h2 class="offer_name">{{ voucher.voucher_name }}</h2>
+                    <p class="voucher_about">{{ voucher.voucher_description }}</p>
                 </h2>
             </div>
             <div class="time_add">
@@ -79,7 +79,7 @@
                       <div class="coupon-details">
                         <h3>{{ coupon.coupon_name }}</h3>
                         {% comment %} <p>{{ coupon.coupon_description }}</p> {% endcomment %}
-                        <p>Price: ${{ coupon.coupon_price }}</p>
+                        <p>Price: {{ coupon.coupon_price }}</p>
                       </div>
                       <a href="{{ coupon.coupon_button_link }}" target="_blank" class="">
                         <button class="add_buttons">PAY</button>
