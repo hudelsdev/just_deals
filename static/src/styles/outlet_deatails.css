@@ -66,7 +66,7 @@ p{
 }
 
 .deail_deal_div_main {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .deail_deal_div {
@@ -126,6 +126,36 @@ p{
   padding: 20px;
   border-top: none;
 }
+.time_add p {
+  color: #6a736c;
+  font-size: 12px;
+  margin: 0 10px 0 0;
+}
+
+h3.proce_deal {
+  font-family: system-ui;
+  font-size: 20px;
+}
+
+h1.dsply_name {
+  font-family: sans-serif;
+}
+
+h2.offer_name {
+  font-family: system-ui;
+}
+
+p.voucher_about {
+  font-family: sans-serif;
+  font-weight: 800;
+}
+.time_add {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  font-family: system-ui;
+}
+
 
 .cards_deals {
   background-color: #fff;
@@ -155,11 +185,6 @@ p{
   margin-bottom: 15px;
 }
 
-.time_add p {
-  color: #6a736c;
-  font-size: 16px;
-  margin: 0 10px 0 0;
-}
 
 .add_button {
   background-color: #ef534e;
@@ -221,7 +246,10 @@ p{
     flex-direction: column; /* Stack logo and search on top of each other */
     align-items: center; /* Center align items */
     height: auto; /* Allow height to adjust based on content */
-    text-align: center; /* Center align text within the container */
+    text-align: center;
+    padding-bottom: 30px;
+
+
   }
 
   .deals_logo {
