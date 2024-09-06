@@ -29,9 +29,14 @@ SECRET_KEY = 'django-insecure-udb5)yq#h(qz#g57)d7+@pz9w)8194@*sn(!xn4#_z6ck1+e1k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ["https://jusdeals.com"]
 
-FORCE_SCRIPT_NAME = '/deals'
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+
+ALLOWED_HOSTS = ['jusdeals.com', '127.0.0.1', 'localhost', "45.79.122.27",]
+
+# FORCE_SCRIPT_NAME = '/deals'
 
 # Application definition
 
@@ -148,11 +153,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # MEDIA_URL='media/'
 # MEDIA_ROOT='media'
 
-STATIC_URL = '/deals/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media')
-MEDIA_URL = 'media/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+# Define where the static files will be collected
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Define the location of static files used in development
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+
+# Define where media files will be uploaded
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 #authentication settings
