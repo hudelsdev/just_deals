@@ -388,8 +388,8 @@ p {
     height: 40px;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    padding: 8px 22px;
-    font-size: 14px;
+    padding: 5px 20px;
+    font-size: 12px;
     font-family: "Manrope", sans-serif;
     font-weight: bold;
     text-transform: capitalize;
@@ -2333,7 +2333,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 @media only screen and (max-width: 991px) {
     header {
-        height: 133px;
+        height: 100px;
     }
     .cr-menu-list {
         padding: 0;
@@ -2389,9 +2389,6 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
     header {
         height: 173px;
     }
-    .top-header {
-        padding: 15px 0;
-    }
     .top-header .cr-search input {
         width: 300px;
     }
@@ -2403,7 +2400,10 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
         margin-top: 0;
     }
     .top-header {
-        display: block;
+        display: flex;
+        justify-content: center;
+        padding: 15px 0;
+
     }
     .top-header .cr-search {
         max-width: 350px;
@@ -2413,7 +2413,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
         width: 100%;
     }
     .top-header .cr-logo {
-        margin-bottom: 15px;
+        /* margin-bottom: 15px; */
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
@@ -2800,13 +2800,14 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 @media only screen and (max-width: 480px) {
     .cr-left-side-contain {
         max-width: 250px;
-        height: 400px;
+        height: 215px;
     }
     .cr-left-side-contain h1 {
+
         margin-bottom: 0;
     }
     .cr-hero-banner {
-        height: 400px;
+        height: 220px;
     }
     .cr-slider .swiper-wrapper .swiper-slide p {
         display: none;
@@ -2831,7 +2832,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 @media only screen and (max-width: 320px) {
     .cr-left-side-contain h1 {
-        font-size: 22px;
+        font-size: 20px;
         line-height: 24px;
         margin-bottom: 10px;
     }
@@ -4468,6 +4469,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 @media only screen and (max-width: 767px) {
     .cr-product-banner-image .cr-product-banner-contain h5 {
         font-size: 20px;
+
     }
     .cr-deal-rightside .cr-deal-content {
         background-color: rgba(247, 247, 248, 0.9) !important;

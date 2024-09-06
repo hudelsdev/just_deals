@@ -220,13 +220,13 @@ p.voucher_about {
   font-weight: bold;
 }
 
-.item_description {
+/* .item_description {
   background-color: #f0ecec;
   padding: 10px;
   font-family: serif;
   max-height: 160px;
   overflow-y: auto;
-}
+} */
 
 .item_pic {
   width: 100%;
@@ -280,8 +280,11 @@ p.voucher_about {
   }
 
   .item_description {
+    font-weight: 600;
     max-height: 120px;
-    overflow-y: auto; /* Ensure overflow content is scrollable */
+    overflow-y: auto;
+    font-family: 'circular';
+
   }
 
   .deail_deal_div {
