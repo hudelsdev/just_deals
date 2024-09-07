@@ -1433,11 +1433,11 @@ a.back-to-top .back-to-top-wrap svg path {
 
 /* Header */
 
-header {
+/* header {
     height: 142px;
     background-color: #fff;
     border-bottom: 1px solid #e9e9e9;
-}
+} */
 
 .cr-fix.menu_fixed {
     position: fixed;
@@ -2698,8 +2698,8 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 .cr-slider .swiper-pagination-bullet {
     -webkit-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     margin: 0 2.5px !important;
     display: inline-block;
     border-radius: 30px;
@@ -2815,17 +2815,22 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 @media only screen and (max-width: 360px) {
     .cr-left-side-contain {
-        height: 350px;
+        height: 170px;
     }
     .cr-hero-banner {
-        height: 350px;
+        height: 169px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px;
     }
     .cr-left-side-contain {
         max-width: 210px;
     }
     .cr-left-side-contain h1 {
-        font-size: 20px;
-        line-height: 26px;
+        font-size: 13px;
+        line-height: 20px;
+
     }
 }
 
@@ -3909,6 +3914,9 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .cr-product-tabs ul .active {
@@ -3929,13 +3937,13 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
     cursor: pointer;
 }
 
-.cr-product-tabs ul li::after {
+/* .cr-product-tabs ul li::after {
     font-family: remixicon;
     content: "\ea6c";
     font-size: 16px;
     position: absolute;
     right: 13px;
-}
+} */
 
 .cr-product-tabs ul li:not(:last-child) {
     margin-bottom: 5px;
