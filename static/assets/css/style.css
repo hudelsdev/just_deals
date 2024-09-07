@@ -2387,7 +2387,7 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 @media only screen and (max-width: 575px) {
     header {
-        height: 100px;
+        height: 100px ;
     }
     .top-header .cr-search input {
         width: 300px;
