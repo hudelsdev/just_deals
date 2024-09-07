@@ -45,7 +45,7 @@
                 <div class="col-lg-12">
                     <div class="top-header">
                         <a href="index.html" class="cr-logo">
-                            <img src="{% static 'assets/img/logo/logo.png' alt="logo" class="logo" %}">
+                            <img src="{% static 'assets/img/logo/logo.png' %}" alt="logo" class="logo">
                             <!-- <img src="{% static 'assets/img/logo/dark-logo.png' alt="logo" class="dark-logo"  %}"> -->
                         </a>
                         <!-- <form class="cr-search">
@@ -844,6 +844,7 @@
                                     </li>
                                     {% for merchant_type in merchant_types %}
                                         <li class="{% if request.GET.type == merchant_type %}active{% endif %}" data-filter=".{{ merchant_type }}">
+                                            <img src="" alt="">
                                             <a href="{% url 'outlet_category' %}?type={{ merchant_type }}">{{ merchant_type|title }}</a>
                                         </li>
                                     {% endfor %}

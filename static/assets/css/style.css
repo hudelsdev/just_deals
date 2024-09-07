@@ -1580,7 +1580,7 @@ a.back-to-top .back-to-top-wrap svg path {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    border-bottom: 1px solid #e9e9e9;
+    /* border-bottom: 1px solid #e9e9e9; */
     display: flex;
     position: relative;
     z-index: 4;
@@ -2387,7 +2387,9 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 
 @media only screen and (max-width: 575px) {
     header {
-        height: 100px ;
+        height: 70px;
+        background-color: #d76262fc;
+        margin-bottom: 20px;
     }
     .top-header .cr-search input {
         width: 300px;
@@ -4263,6 +4265,10 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
     }
     .cr-product-tabs ul li:not(:last-child) {
         margin-bottom: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        justify-items: center;
     }
 }
 
@@ -5520,7 +5526,10 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 /* pages */
 
 /* Products-page */
-
+.merchnt_type{
+    width: 40px;
+    height: 15px;
+}
 .cr-product-card {
     height: 100%;
     padding: 12px;
@@ -6476,7 +6485,6 @@ ul.navbar-nav .dropdown:hover .dropdown-menu {
 }
 
 @media only screen and (max-width: 480px) {
-    .cr-product-box,
     .cr-product-card {
         width: 100%;
     }
