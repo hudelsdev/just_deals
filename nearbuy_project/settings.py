@@ -161,7 +161,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # MEDIA_URL='media/'
 # MEDIA_ROOT='media'
 
-STATIC_URL = 'static/'
+STATIC_URL = '/deals/static/'
 MEDIA_URL = 'media/'
 
 # Define where the static files will be collected
