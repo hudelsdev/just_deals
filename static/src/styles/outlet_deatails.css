@@ -3,6 +3,10 @@
   background-color: #f8f8f8;
   padding: 20px;
 }
+img.detail_logo {
+  width: 150px;
+  height: 50px;
+}
 
 .deal-nav {
   background-color: #f0ebeb;
