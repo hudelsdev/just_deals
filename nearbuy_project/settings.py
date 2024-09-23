@@ -157,25 +157,18 @@ USE_TZ = True
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
+# Default auto field setting
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# MEDIA_URL='media/'
-# MEDIA_ROOT='media'
 
-STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'  # Ensure this starts with a slash
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory for collected static files
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Additional static files directories
 
-# Define where the static files will be collected
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Media files (uploads)
+MEDIA_URL = '/media/'  # Ensure this starts with a slash
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory for uploaded media files
 
-# Define the location of static files used in development
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# Define where media files will be uploaded
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-#authentication settings
+# Authentication settings
 LOGIN_URL = 'admin_login'
-
-
 AUTH_USER_MODEL = 'accounts_app.CustomUser'
