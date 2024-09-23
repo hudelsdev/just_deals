@@ -917,7 +917,7 @@ a.back-to-top .back-to-top-wrap svg path {
 @media only screen and (max-width: 767px) {
     .cr-banner h2 {
         font-size: 22px;
-        color: aqua;
+        color: #011010;
     }
     .cr-breadcrumb-image .cr-breadcrumb-title h2 {
         font-size: 17px;
