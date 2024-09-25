@@ -169,6 +169,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # Additional static files
 MEDIA_URL = '/media/'  # Ensure this starts with a slash
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory for uploaded media files
 
-# Authentication settings
+# Define the location of static files used in development
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
+
+# Define where media files will be uploaded
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#authentication settings
 LOGIN_URL = 'admin_login'
 AUTH_USER_MODEL = 'accounts_app.CustomUser'
+ 
