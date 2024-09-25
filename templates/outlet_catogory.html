@@ -11,7 +11,7 @@
     <meta name="description" content="Carrot - Multipurpose eCommerce HTML Template.">
     <meta name="author" content="ashishmaraviya">
 
-    <title>Carrot - Multipurpose eCommerce HTML Template</title>
+    <title>Jus(T)Deals</title>
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{% static 'assets/img/logo/favicon.png' %}">
@@ -265,7 +265,7 @@
                             </div>
                         </div>
                     </div>
-                    <nav class="navbar navbar-expand-lg">
+                    <!-- <nav class="navbar navbar-expand-lg">
                         <a href="javascript:void(0)" class="navbar-toggler shadow-none">
                             <i class="ri-menu-3-line"></i>
                         </a>
@@ -434,7 +434,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </nav>
+                    </nav> -->
                     <div class="cr-calling">
                         <i class="ri-phone-line"></i>
                         <a href="javascript:void(0)">+123 ( 456 ) ( 7890 )</a>
@@ -572,30 +572,28 @@
                 <div class="col-xl-9 col-lg-8 col-12 mb-24">
                     <div class="row mb-minus-24">
                         {% for item in items %}
-                        <div class="mix col-xxl-3 col-xl-4 col-6 cr-product-box mb-24">
+                        <div class="outlet_box">
                             <div class="cr-product-card">
                                 <div class="cr-product-image">
                                     <div class="cr-image-inner zoom-image-hover">
                                         <img class="outlet_imgs" src="{{ item.outlet_img.url }}" alt="{{ item.outlet_name }}">
                                     </div>
-                                    <div class="cr-side-view">
+                                    <!-- <div class="cr-side-view">
                                         <a href="javascript:void(0)" class="wishlist">
                                             <i class="ri-heart-line"></i>
                                         </a>
                                         <a class="model-oraganic-product" data-bs-toggle="modal" href="#quickview" role="button">
                                             <i class="ri-eye-line"></i>
                                         </a>
-                                    </div>
-                                    <a class="cr-shopping-bag" href="{% url 'outlet_deatails' pk=item.pk %}">
+                                    </div> -->
+                                    <!-- <a class="cr-shopping-bag" href="{% url 'outlet_deatails' pk=item.pk %}">
                                         <i class="ri-shopping-bag-line"></i>
-                                    </a>
+                                    </a> -->
                                 </div>
                                 <div class="cr-product-details">
-                                    <div class="cr-brand">
-                                        <!-- Replace this with actual category if applicable -->
+                                    <!-- <div class="cr-brand">
                                         <a href="shop-left-sidebar.html">{{ item.category }}</a>
                                         <div class="cr-star">
-                                            <!-- Placeholder for ratings -->
                                             <i class="ri-star-fill"></i>
                                             <i class="ri-star-fill"></i>
                                             <i class="ri-star-fill"></i>
@@ -603,7 +601,7 @@
                                             <i class="ri-star-line"></i>
                                             <p>(4.5)</p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <a href="{% url 'outlet_deatails' pk=item.pk %}" class="title">{{ item.outlet_name }}</a>
                                     <p>{{ item.outlet_description }}</p>
                                     {% comment %} <p class="cr-price"><span class="new-price">{{ item.new_price }}</span> <span class="old-price">{{ item.old_price }}</span></p> {% endcomment %}
@@ -626,8 +624,8 @@
                 <div class="col-xl-4 col-lg-6 col-sm-12 col-12 cr-footer-border">
                     <div class="cr-footer-logo">
                         <div class="image">
-                            <img src="assets/img/logo/logo.png" alt="logo" class="logo">
-                            <img src="assets/img/logo/dark-logo.png" alt="logo" class="dark-logo">
+                            <img src="{% static 'assets/img/logo/pink_jusdeals_logo.png' %}" alt="logo" class="logo">
+                            <!-- <img src="assets/img/logo/dark-logo.png" alt="logo" class="dark-logo"> -->
                         </div>
                         <p>Carrot is the biggest market of grocery products. Get your daily needs from our store.</p>
                     </div>
@@ -688,12 +686,12 @@
                             <span class="cr-heading-res"></span>
                         </h4>
                         <div class="cr-footer-links cr-footer-dropdown">
-                            <form class="cr-search-footer">
+                            <!-- <form class="cr-search-footer">
                                 <input class="search-input" type="text" placeholder="Search here...">
                                 <a href="javascript:void(0)" class="search-btn">
                                     <i class="ri-send-plane-fill"></i>
                                 </a>
-                            </form>
+                            </form> -->
                         </div>
                         <div class="cr-social-media">
                             <span><a href="javascript:void(0)"><i class="ri-facebook-line"></i></a></span>
@@ -923,7 +921,7 @@
     </div>
 
     <!-- Side-tool -->
-    <div class="cr-tool-overlay"></div>
+    <!-- <div class="cr-tool-overlay"></div>
     <div class="cr-tool">
         <div class="cr-tool-btn">
             <a href="javascript:void(0)" class="btn-cr-tool result-placeholder">
@@ -1014,7 +1012,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Vendor Custom -->
     <script src="{% static 'assets/js/vendor/jquery-3.6.4.min.js' %}"></script>

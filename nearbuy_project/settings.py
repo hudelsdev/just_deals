@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-udb5)yq#h(qz#g57)d7+@pz9w)8194@*sn(!xn4#_z6ck1+e1k'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 CSRF_TRUSTED_ORIGINS = ["https://jusdeals.com"]
 
@@ -93,25 +93,25 @@ WSGI_APPLICATION = 'nearbuy_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'dealsdb',
-            'USER': 'dealsadmin',
-            'PASSWORD': 'deals@123#@!',
-            'HOST': '192.46.208.240',
-            'PORT': '5432',
-            #'OPTIONS': {'sslmode': 'require'},
-            # os.getenv("DB_PASSWORD")
-        }
-}
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#             'NAME': 'dealsdb',
+#             'USER': 'dealsadmin',
+#             'PASSWORD': 'deals@123#@!',
+#             'HOST': '192.46.208.240',
+#             'PORT': '5432',
+#             #'OPTIONS': {'sslmode': 'require'},
+#             # os.getenv("DB_PASSWORD")
+#         }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 
 
@@ -168,14 +168,14 @@ MEDIA_URL = 'media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Define the location of static files used in development
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static'),]
 
 # Define where media files will be uploaded
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 #authentication settings
 LOGIN_URL = 'admin_login'
 
 
 AUTH_USER_MODEL = 'accounts_app.CustomUser'
+ 

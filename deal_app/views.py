@@ -8,8 +8,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.exceptions import ValidationError
 from deal_app.models import*
 from nearbuy_app.models import*
+import re
 # from datetime import time
 from .models import Dealers
+from .models import Vendor
 from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
@@ -34,111 +36,114 @@ def main_login(request):
         # Retrieve form data
         name_user = request.POST.get('name')
         user_phone_number = request.POST.get('phone_number')
-        
+
+        print(f"Received username: {name_user}, phone number: {user_phone_number}")
+
         # Validate the phone number
         if not re.match(r'^\d{10}$', user_phone_number):
             messages.error(request, 'Invalid phone number. It must be a 10-digit number.')
             return render(request, 'main_login.html')
-        
-        # Save the user data to the database
-        Users.objects.create(name_user=name_user, user_phone_number=user_phone_number)
-        
-        # Redirect to the index page
-        return redirect('index')
-    
+
+        # Validate the username
+        if not name_user:
+            messages.error(request, 'Username cannot be empty.')
+            return render(request, 'main_login.html')
+
+        # Check if the username already exists
+        if Users.objects.filter(name_user=name_user).exists():
+            messages.error(request, 'Username already exists. Please choose a different username.')
+            return render(request, 'main_login.html')
+
+        try:
+            # Create user instance
+            user = Users.objects.create(name_user=name_user, user_phone_number=user_phone_number)
+            print(f"User created: {user}")
+
+            # Confirm redirection
+            print("User created successfully. Redirecting to index...")
+            return redirect('index')
+
+        except Exception as e:
+            messages.error(request, f"An error occurred while creating the user: {str(e)}")
+            return render(request, 'main_login.html')
+
     return render(request, 'main_login.html')
-    
 
 
 
 # views for registration /////////////
 ##############################here we need to cahange like jobportal company register#######
-@super_login_required
-def register_and_add_outlet(request):
+# @super_login_required
+def register_and_add_outlet(request, vendor_id):
+    vendor = get_object_or_404(Vendor, id=vendor_id)
+
     if request.method == 'POST':
-        if 'submit' in request.POST:
-            # Handle User Registration
-            merchant_name = request.POST.get('merchant_name')
-            merchant_type = request.POST.get('merchant_type')
-            merchant_address = request.POST.get('merchant_address')
-            city = request.POST.get('city')
-            phone = request.POST.get('phone')
-            user_name = request.POST.get('uname')
-            email = request.POST.get('email')
-            password = request.POST.get('password')
-            cpassword = request.POST.get('cpassword')
-            business_owner_name = request.POST.get('business_owner_name')
-            contact_person = request.POST.get('contact_person')
+        # Extract form data
+        uname = request.POST.get('uname')
+        password = request.POST.get('password')
+        cpassword = request.POST.get('cpassword')
+        merchant_name = request.POST.get('merchant_name', '')
+        business_owner_name = request.POST.get('business_owner_name', '')
+        merchant_type = request.POST.get('merchant_type', 'hotel')
+        merchant_address = request.POST.get('merchant_address', '')
+        city = request.POST.get('city', '')
+        phone = request.POST.get('phone', '')
+        contact_person = request.POST.get('contact_person', 0)
+        outlet_name = request.POST.get('outlet_name', '')
+        outlet_description = request.POST.get('outlet_description', '')
+        start_time = request.POST.get('start_time', '00:00:00')
+        end_time = request.POST.get('end_time', '23:59:59')
+        outlet_img = request.FILES.get('outlet_img')
 
-            if User.objects.filter(username=user_name).exists():
-                return render(request, 'register_and_add_outlet.html', {
-                    'message': 'Username already exists',
-                    'choices': Dealers.drop_merchant_type
-                })
+        # Validate that passwords match
+        if password != cpassword:
+            messages.error(request, "Passwords do not match.")
+            return render(request, 'register_and_add_outlet.html', {
+                'vendor': vendor,
+                'merchant_type_choices': Dealers.MERCHANT_TYPE_CHOICES
+            })
 
-            if password != cpassword:
-                return render(request, 'register_and_add_outlet.html', {
-                    'message': 'Passwords do not match',
-                    'choices': Dealers.drop_merchant_type
-                })
+        # Check if the username already exists
+        if User.objects.filter(username=uname).exists():
+            messages.error(request, "Username already exists. Please choose a different username.")
+            return render(request, 'register_and_add_outlet.html', {
+                'vendor': vendor,
+                'merchant_type_choices': Dealers.MERCHANT_TYPE_CHOICES
+            })
 
-            user = User.objects.create_user(
-                email=email,
-                password=password,
-                username=user_name
-            )
-            user.save()
+        # Create a new user and dealer
+        user = User.objects.create_user(username=uname, password=password)
+        
+        dealer = Dealers(
+            user=user,
+            vendor=vendor,
+            merchant_name=merchant_name,
+            business_owner_name=business_owner_name,
+            merchant_type=merchant_type,
+            merchant_address=merchant_address,
+            city=city,
+            phone=phone,
+            contact_person=contact_person,
+            outlet_name=outlet_name,
+            outlet_description=outlet_description,
+            start_time=start_time,
+            end_time=end_time,
+            outlet_img=outlet_img
+        )
+        dealer.save()
 
-            newdealer = Dealers(
-                user=user,
-                phone=phone,
-                merchant_type=merchant_type,
-                city=city,
-                merchant_name=merchant_name,
-                merchant_address=merchant_address,
-                business_owner_name=business_owner_name,
-                contact_person=contact_person
-            )
-            newdealer.save()
+        messages.success(request, "Dealer registered and outlet added successfully.")
+        return redirect('vendor_dashboard')
 
-            auth_login(request, user)
+    merchant_type_choices = Dealers.MERCHANT_TYPE_CHOICES
 
-            # Handle Outlet Addition
-            outlet_name = request.POST.get('item-name')
-            outlet_description = request.POST.get('description')
-            start_time_str = request.POST.get('time-from')
-            end_time_str = request.POST.get('time-to')
-            outlet_img = request.FILES.get('image')
+    return render(request, 'register_and_add_outlet.html', {
+        'vendor': vendor,
+        'merchant_type_choices': merchant_type_choices,
+    })
 
-            # Basic validation
-            if not outlet_name or not outlet_description or not start_time_str or not end_time_str:
-                return render(request, 'register_and_add_outlet.html', {
-                    'message': 'Please fill in all required fields',
-                    'choices': Dealers.drop_merchant_type
-                })
 
-            try:
-                start_time = datetime.strptime(start_time_str, '%H:%M').time()
-                end_time = datetime.strptime(end_time_str, '%H:%M').time()
-            except ValueError:
-                return render(request, 'register_and_add_outlet.html', {
-                    'message': 'Invalid time format. Use HH:MM format.',
-                    'choices': Dealers.drop_merchant_type
-                })
-
-            dealer = Dealers.objects.get(user=user)
-            dealer.outlet_name = outlet_name
-            dealer.outlet_description = outlet_description
-            dealer.start_time = start_time
-            dealer.end_time = end_time
-            dealer.outlet_img = outlet_img
-            dealer.save()
-
-            return redirect('index')  # Redirect after registration and outlet addition
-
-    # For GET request, render the form with choices
-    choices = Dealers.drop_merchant_type
-    return render(request, 'register_and_add_outlet.html', {'choices': choices})             
+                            
                       
             
 # views for login page///////
@@ -156,8 +161,6 @@ def dealer_login(request):
             return render(request, 'dealer_login.html', {'message': 'Invalid credentials'})
     else:
         return render(request, 'dealer_login.html')
-
-
 #forgot password///////
 
 def forgot_password(request):
@@ -172,9 +175,9 @@ def dealer_logout(request):
 # ////////////////////
 
 
-def index_main(request):
-    items = Dealers.objects.all()
-    return render(request, 'index_main.html',{'items':items} )
+# def index_main(request):
+#     items = Dealers.objects.all()
+#     return render(request, 'index_main.html',{'items':items} )
 
 
 # @super_login_required
@@ -236,7 +239,7 @@ def outlet_deatails(request, pk):
 
 def outlet_category(request, category=None):
     # Get all merchant types for the dropdown
-    merchant_types = dict(Dealers.drop_merchant_type)
+    merchant_types = dict(Dealers.MERCHANT_TYPE_CHOICES)
     selected_type = request.GET.get('type', category)
 
     # Filter dealers based on the selected type
@@ -246,7 +249,7 @@ def outlet_category(request, category=None):
         outlets = Dealers.objects.all()
 
     return render(request, 'outlet_catogory.html', {
-        'items': outlets,
+        'items': outlets, 
         'merchant_types': merchant_types,
         'selected_type': selected_type,
         'current_category': merchant_types.get(selected_type, 'All Catogories')  # Default to 'All Categories' if none is selected
@@ -268,6 +271,8 @@ def index(request):
     }
     
     return render(request, 'index.html', context)
+
+
 
 
 def add_voucher_coupon(request):
@@ -340,4 +345,3 @@ def delete_voucher_coupon(request, pk):
 
     # For GET requests, just redirect to the voucher list without deleting anything
     return redirect('coupon_list')
-

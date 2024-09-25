@@ -5,7 +5,7 @@
 }
 
 .deal-nav {
-  background-color: #f0ebeb;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   height: 65px;
@@ -239,6 +239,10 @@ p.voucher_about {
   .img_res, .item_pic {
     max-width: 200px;
   }
+}
+img.detail_logo {
+  width: 150px;
+  height: 50px;
 }
 
 @media (max-width: 600px) {
