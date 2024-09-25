@@ -2001,9 +2001,9 @@ height: 25px;
     height: fit-content;
 
 }
-.categ_img{
+/* .categ_img{
 
-}
+} */
 /* Category Toggle */
 
 .cr-category-icon-block {
@@ -6877,9 +6877,8 @@ h3.offer_txt_actvty {
 }
 
 @media only screen and (max-width: 480px) {
-    .cr-product-card {
-        /* width: 100%; */
-    }
+    /* .cr-product-card {
+    } */
     .banner-480 {
         display: none;
     }
