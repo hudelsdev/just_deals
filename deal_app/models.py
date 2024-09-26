@@ -19,7 +19,7 @@ class Vendor(models.Model):
     vendor_type = models.CharField(max_length=50, choices=VENDOR_TYPE_CHOICES)
 
     # Point of contact (integer field)
-    point_of_contact = models.IntegerField(default=0)
+    point_of_contact = models.CharField(max_length=15)
 
     # Phone
     phone = models.CharField(max_length=15)
