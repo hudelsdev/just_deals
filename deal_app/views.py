@@ -345,3 +345,12 @@ def delete_voucher_coupon(request, pk):
 
     # For GET requests, just redirect to the voucher list without deleting anything
     return redirect('coupon_list')
+
+
+
+def terms_conditions(request):
+    return render(request,'terms_condition.html')
+
+def cancellation(request):
+    return render(request,'cancellation.html')
+    
