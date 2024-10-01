@@ -17,6 +17,8 @@ urlpatterns =[
    path('coupon_list/', coupon_list, name='coupon_list'),
    path('edit_voucher_coupon/<int:pk>/', edit_voucher_coupon, name='edit_voucher_coupon'),
    path('delete_voucher_coupon/<int:pk>/', delete_voucher_coupon, name='delete_voucher_coupon'),
+   path('terms_conditions/', terms_conditions, name='terms_conditions'),
+   path('cancellation/', cancellation, name='cancellation'),
 
 
 ]
