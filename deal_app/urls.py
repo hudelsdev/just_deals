@@ -19,6 +19,7 @@ urlpatterns =[
    path('delete_voucher_coupon/<int:pk>/', delete_voucher_coupon, name='delete_voucher_coupon'),
    path('terms_conditions/', terms_conditions, name='terms_conditions'),
    path('cancellation/', cancellation, name='cancellation'),
+   path('privacy_policy/', privacy_policy, name='privacy_policy'),
 
 
 ]
