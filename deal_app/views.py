@@ -353,4 +353,6 @@ def terms_conditions(request):
 
 def cancellation(request):
     return render(request,'cancellation.html')
-    
+
+def privacy_policy(request):
+    return render(request,'privacy_policy.html')
